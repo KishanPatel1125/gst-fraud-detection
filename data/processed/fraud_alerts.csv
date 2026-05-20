@@ -1,0 +1,542 @@
+gstin,is_fraud,fraud_type,xgb_score,anomaly_score,graph_risk_score,in_circular_ring,rule_score,rule_flags,flag_count,ensemble_score,models_agreeing,risk_level
+02MJGMU7745L8ZB,1,sudden_spike,97.16,88.94,86.38,1,45,1 missing return(s) | Sales spike 13.3x (extreme) | Sales volatility 1.61 (high),3,99.59,4,CRITICAL
+29EARET3287D7ZT,1,sudden_spike,99.34,90.06,73.55,1,45,2 missing return(s) | Sales spike 11.9x (extreme) | Sales volatility 1.58 (high),3,97.42,4,CRITICAL
+09SVRWV9696V2ZH,1,missing_returns,98.69,71.81,87.97,1,47,6 missing returns (critical) | Filing rate 67% (low),2,96.54,4,CRITICAL
+24MOAIP8405X3Z5,1,missing_returns,99.17,68.44,85.61,1,47,8 missing returns (critical) | Filing rate 56% (low),2,95.27,4,CRITICAL
+33CFEQA4862C2ZP,1,shell_company,99.7,65.63,81.54,1,48,ITC ratio 47.6x (extreme) | 2 missing return(s),2,93.89,4,CRITICAL
+03JAJUH2672A1ZA,1,shell_company,99.29,66.84,76.88,1,48,ITC ratio 98.4x (extreme) | 1 missing return(s),2,92.88,4,CRITICAL
+03ONQDM6647O9ZN,1,fake_itc,99.92,66.15,81.01,1,40,ITC ratio 3.1x (extreme),1,92.76,4,CRITICAL
+20CXYAG0625L6ZD,1,missing_returns,99.3,62.91,78.81,1,47,6 missing returns (critical) | Filing rate 67% (low),2,92.24,4,CRITICAL
+17YLFLS0056H1ZO,1,shell_company,99.53,60.94,82.86,1,40,ITC ratio 66.8x (extreme),1,91.79,4,CRITICAL
+05YSKHV1744V7Z7,1,shell_company,99.32,67.57,67.11,1,48,ITC ratio 58.9x (extreme) | 1 missing return(s),2,90.63,4,CRITICAL
+18HOBRC1403I9ZE,1,missing_returns,99.36,55.39,84.73,1,68,10 missing returns (critical) | Filing rate 44% (very low) | Invoice match rate 84%,3,90.01,3,CRITICAL
+20JRFBA7800W2ZY,1,sudden_spike,98.19,59.38,85.32,1,53,2 missing return(s) | Sales spike 11.9x (extreme) | Invoice match rate 80% | Sales volatility 1.52 (high),4,88.49,3,CRITICAL
+05BDITF0160Z2ZT,1,shell_company,99.36,86.35,51.55,0,60,ITC ratio 61.6x (extreme) | 3 missing returns (high),2,88.25,3,CRITICAL
+20JXDBG7353G3ZS,1,missing_returns,99.53,59.37,77.08,1,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 79%,3,87.2,3,CRITICAL
+15JJCNU5869G9ZM,1,sudden_spike,98.52,58.38,77.97,1,57,4 missing returns (high) | Sales spike 16.8x (extreme) | Sales volatility 1.51 (high),3,87.12,3,CRITICAL
+08TSMWV3136M7ZP,1,sudden_spike,97.23,74.78,77.25999999999999,1,33,1 missing return(s) | Sales spike 6.8x (high) | Sales volatility 1.50 (high),3,86.99,3,CRITICAL
+22KCXTL5205Z8Z1,1,sudden_spike,99.28,63.09,78.47999999999999,1,37,Sales spike 14.6x (extreme) | Sales volatility 1.68 (high),2,85.69,3,CRITICAL
+03CKEJO3799R8ZV,1,shell_company,99.49,45.61,85.71,1,48,ITC ratio 76.8x (extreme) | 1 missing return(s),2,84.85,3,CRITICAL
+07DTJNE5932U4ZT,1,missing_returns,98.7,50.76,76.85,1,55,9 missing returns (critical) | Filing rate 50% (low) | Invoice match rate 78%,3,84.7,3,CRITICAL
+12EAFUY5241L9ZL,1,fake_itc,99.86,55.42,79.47,1,40,ITC ratio 3.7x (extreme),1,84.67,3,CRITICAL
+33WFXNN1165O3ZR,1,shell_company,99.81,45.72,83.31,1,48,ITC ratio 116.7x (extreme) | 1 missing return(s),2,84.39,3,CRITICAL
+19CXQOX2249I6Z9,1,sudden_spike,99.55,54.58,76.47999999999999,1,45,1 missing return(s) | Sales spike 12.6x (extreme) | Sales volatility 1.62 (high),3,84.36,3,CRITICAL
+17SKXGN4618Q7Z2,1,missing_returns,98.94,42.14,83.25,1,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 83%,3,84.23,3,CRITICAL
+14KRTFF7619E3ZL,1,shell_company,99.39,83.93,44.93,0,48,ITC ratio 69.7x (extreme) | 2 missing return(s),2,84.2,3,CRITICAL
+08FNXKI3707L4ZS,1,shell_company,99.4,36.29,82.18,1,60,ITC ratio 86.6x (extreme) | 3 missing returns (high),2,83.41,3,CRITICAL
+04WCKZE3991H8ZJ,1,missing_returns,98.18,89.21,38.68,0,47,8 missing returns (critical) | Filing rate 56% (low),2,83.39,3,CRITICAL
+33TJXLF7401K5ZG,1,sudden_spike,99.02,45.32,82.27,1,45,2 missing return(s) | Sales spike 12.0x (extreme) | Sales volatility 1.48 (high),3,83.3,3,CRITICAL
+27VLKYU4951A9ZQ,1,sudden_spike,98.9,52.08,75.47999999999999,1,45,1 missing return(s) | Sales spike 15.4x (extreme) | Sales volatility 1.73 (high),3,83.26,3,CRITICAL
+19EBLNU6971N2ZV,1,missing_returns,99.01,46.28,79.93,1,47,8 missing returns (critical) | Filing rate 56% (low),2,83.26,3,CRITICAL
+18PNESY2510W2ZU,1,missing_returns,98.7,42.91,81.05,1,47,7 missing returns (critical) | Filing rate 61% (low),2,82.58,3,CRITICAL
+06IRKSN5749F2Z6,1,shell_company,99.81,35.28,86.37,1,48,ITC ratio 73.6x (extreme) | 1 missing return(s),2,82.55,3,CRITICAL
+12FDFVJ9584W3ZS,1,missing_returns,99.74,40.39,81.5,1,47,6 missing returns (critical) | Filing rate 67% (low),2,82.43,3,CRITICAL
+04SQHSQ5978P7ZP,1,shell_company,99.81,34.39,86.16,1,48,ITC ratio 65.3x (extreme) | 1 missing return(s),2,82.27,3,CRITICAL
+20AFNOT1247J7ZG,1,shell_company,99.64,42.16,73.28,1,56,ITC ratio 93.0x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,82.13,3,CRITICAL
+20HJQAF3527X9ZZ,1,shell_company,99.08,85.19,35.58,0,48,ITC ratio 83.8x (extreme) | Invoice match rate 83%,2,82.07,3,CRITICAL
+10JMIDK5685U5ZR,1,shell_company,99.43,74.57,45.510000000000005,0,48,ITC ratio 83.5x (extreme) | 1 missing return(s),2,82.02,3,CRITICAL
+21JUTWY8293N9ZE,1,fake_itc,99.84,44.01,79.16,1,41,ITC ratio 2.5x (high) | 2 missing return(s) | Invoice match rate 85%,3,81.89,3,CRITICAL
+15ETDSN9330N4Z1,1,shell_company,99.76,75.85,42.38,0,48,ITC ratio 110.3x (extreme) | 2 missing return(s),2,81.67,3,CRITICAL
+18XZDNZ6717C7ZN,1,missing_returns,98.79,43.13,69.14,1,60,10 missing returns (critical) | Filing rate 44% (very low),2,81.64,3,CRITICAL
+05UCZNZ2038D1ZT,1,sudden_spike,99.45,65.08,49.88,0,53,1 missing return(s) | Sales spike 17.5x (extreme) | Invoice match rate 81% | Sales volatility 1.66 (high),4,81.5,3,CRITICAL
+16HHRSF1587M6ZQ,1,missing_returns,98.27,83.93,40.44,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 80%,3,81.49,3,CRITICAL
+12QNAGW2597R6Z2,1,missing_returns,97.68,41.05,79.91,1,47,9 missing returns (critical) | Filing rate 50% (low),2,81.48,3,CRITICAL
+27VVZYP7446E1ZH,1,shell_company,99.6,68.92,48.29,0,48,ITC ratio 62.4x (extreme) | 1 missing return(s),2,81.36,3,CRITICAL
+27DJRBP9165F5Z7,1,missing_returns,97.83,40.1,79.23,1,47,8 missing returns (critical) | Filing rate 56% (low),2,81.12,3,CRITICAL
+20WXOTM2530Y7Z4,1,missing_returns,98.84,76.78,41.07,0,47,6 missing returns (critical) | Filing rate 67% (low),2,81.11,3,CRITICAL
+12FCANU0374V1ZX,1,shell_company,99.31,77.89,38.41,0,48,ITC ratio 103.0x (extreme) | 1 missing return(s),2,81.03,3,CRITICAL
+20QEWXM7709K4ZH,1,shell_company,99.78,39.02,80.66,1,40,ITC ratio 90.6x (extreme),1,80.84,3,HIGH
+17WTALS7186N2ZN,1,sudden_spike,99.23,100.0,42.07,0,37,Sales spike 19.2x (extreme) | Sales volatility 1.85 (high),2,80.8,2,HIGH
+08NMQKW4821E4ZM,1,shell_company,99.53,25.75,83.51,1,56,ITC ratio 68.0x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,80.55,3,HIGH
+09ZKRQH3507F9ZW,1,missing_returns,99.3,77.45,36.84,0,47,8 missing returns (critical) | Filing rate 56% (low),2,80.38,3,HIGH
+20KDLRD4284H5ZH,1,shell_company,99.76,45.63,71.72,1,40,ITC ratio 97.4x (extreme),1,80.25,3,HIGH
+01OIDPJ0818L7ZE,1,fake_itc,99.87,28.02,79.38,1,56,ITC ratio 3.7x (extreme) | 1 missing return(s) | Invoice match rate 80%,3,80.2,3,HIGH
+20AORRZ3470Q7ZO,1,fake_itc,99.82,28.98,78.13,1,56,ITC ratio 3.2x (extreme) | 1 missing return(s) | Invoice match rate 76%,3,80.11,3,HIGH
+04MEFIY1166H2Z7,1,shell_company,99.44,37.02,79.48,1,40,ITC ratio 58.5x (extreme),1,79.93,3,HIGH
+21BMLDK6719D3ZN,1,fake_itc,99.82,57.66,81.99,1,33,ITC ratio 2.6x (high) | Invoice match rate 79%,2,79.8,2,HIGH
+11NTLYK0744C9Z0,1,shell_company,99.44,34.77,71.46000000000001,1,56,ITC ratio 87.0x (extreme) | 2 missing return(s) | Invoice match rate 84%,3,79.76,3,HIGH
+14GXOAX5191J5ZY,1,missing_returns,98.51,68.07,39.260000000000005,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 74%,3,79.56,3,HIGH
+36JPEFH7185N3ZL,1,missing_returns,99.32,68.72,41.93,0,47,7 missing returns (critical) | Filing rate 61% (low),2,79.47,3,HIGH
+07AQNML2739R2ZF,1,missing_returns,98.55,34.37,77.11,1,47,6 missing returns (critical) | Filing rate 67% (low),2,79.41,3,HIGH
+09GVTLF6552S2Z2,1,missing_returns,99.55,60.56,49.13,0,47,8 missing returns (critical) | Filing rate 56% (low),2,79.31,3,HIGH
+29SMDJD7194T3Z5,1,shell_company,99.74,36.03,76.92,1,40,ITC ratio 112.2x (extreme),1,79.15,3,HIGH
+32RKTYR9930C6ZM,1,sudden_spike,98.69,98.06,37.63,0,37,Sales spike 15.6x (extreme) | Sales volatility 1.67 (high),2,79.01,2,HIGH
+33VCJUF1440V5ZH,1,fake_itc,99.92,30.76,76.55,1,48,ITC ratio 3.1x (extreme) | 1 missing return(s),2,79.0,3,HIGH
+29JJYGI1053T4ZL,1,sudden_spike,99.16,43.35,61.76,1,53,2 missing return(s) | Sales spike 11.7x (extreme) | Invoice match rate 84% | Sales volatility 1.83 (high),4,78.93,3,HIGH
+06PZARY7899S9ZT,1,missing_returns,99.51,60.33,47.75,0,47,7 missing returns (critical) | Filing rate 61% (low),2,78.9,3,HIGH
+12XUUHW6959P3Z3,1,fake_itc,99.93,63.57,43.22,0,48,ITC ratio 3.6x (extreme) | 2 missing return(s),2,78.87,3,HIGH
+36EKPTK3096W1Z2,1,shell_company,99.86,30.56,75.66,1,48,ITC ratio 121.5x (extreme) | 1 missing return(s),2,78.71,3,HIGH
+04HQQST7107Z6ZM,1,shell_company,99.7,38.2,63.46,1,56,ITC ratio 106.9x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,78.71,3,HIGH
+16CBBAS6431K7ZR,1,fake_itc,99.9,21.83,77.03,1,60,ITC ratio 3.7x (extreme) | 4 missing returns (high),2,78.68,3,HIGH
+12VQPMA6127O5ZN,1,shell_company,99.37,34.04,77.22999999999999,1,40,ITC ratio 70.2x (extreme),1,78.6,3,HIGH
+13MBSLG1308A4ZQ,1,shell_company,99.72,32.85,73.03999999999999,1,48,ITC ratio 109.2x (extreme) | 1 missing return(s),2,78.57,3,HIGH
+05DILAB1376L1ZR,1,shell_company,99.39,63.44,37.92,0,56,ITC ratio 55.0x (extreme) | 2 missing return(s) | Invoice match rate 82%,3,78.53,3,HIGH
+18DOMIS5060P6ZN,1,shell_company,99.38,23.86,81.38,1,48,ITC ratio 64.9x (extreme) | 1 missing return(s),2,78.29,3,HIGH
+16AXDIK5467L3ZB,1,missing_returns,99.55,61.08,44.38,0,47,9 missing returns (critical) | Filing rate 50% (low),2,78.26,3,HIGH
+32ZAVWR7364E2Z9,1,shell_company,98.55,75.13,35.260000000000005,0,40,ITC ratio 58.6x (extreme),1,78.09,3,HIGH
+24SHDYP0844I9ZI,1,fake_itc,99.04,19.14,80.41,1,56,ITC ratio 3.2x (extreme) | 2 missing return(s) | Invoice match rate 81%,3,77.95,3,HIGH
+20LWLFE0627Q4ZY,1,shell_company,99.83,29.11,73.86,1,48,ITC ratio 79.8x (extreme) | 1 missing return(s),2,77.88,3,HIGH
+09TBKXJ7467B7ZU,1,missing_returns,97.12,39.0,68.3,1,47,8 missing returns (critical) | Filing rate 56% (low),2,77.87,3,HIGH
+16NXDUS2669G2ZI,1,sudden_spike,98.69,53.27,77.41,1,37,Sales spike 17.9x (extreme) | Sales volatility 1.94 (high),2,77.76,2,HIGH
+20NPVPV0306Y6ZW,1,shell_company,99.39,64.76,43.08,0,40,ITC ratio 113.1x (extreme),1,77.75,3,HIGH
+06UARMV8776O1ZW,1,shell_company,99.41,23.36,84.21,1,40,ITC ratio 58.4x (extreme),1,77.69,3,HIGH
+09FFQDR5591P8ZK,1,shell_company,99.81,22.05,79.99,1,48,ITC ratio 56.0x (extreme) | 1 missing return(s),2,77.64,3,HIGH
+01TXPGH0197H5ZO,1,shell_company,99.4,68.61,38.64,0,40,ITC ratio 53.3x (extreme),1,77.6,3,HIGH
+10MRKSH6010U9Z3,1,fake_itc,99.95,20.25,77.96000000000001,1,53,ITC ratio 2.3x (high) | 1 missing return(s) | New company (1yr) with high turnover,3,77.48,3,HIGH
+01XUZLH8422R9ZH,1,shell_company,99.73,30.71,63.04,1,60,ITC ratio 71.4x (extreme) | 3 missing returns (high),2,77.34,3,HIGH
+33JBTLF9965J4ZY,1,shell_company,99.84,26.38,74.25,1,48,ITC ratio 95.1x (extreme) | Invoice match rate 83%,2,77.3,3,HIGH
+22CNADE4689T8ZT,1,sudden_spike,98.96,52.93,75.27000000000001,1,37,Sales spike 11.5x (extreme) | Sales volatility 1.53 (high),2,77.24,2,HIGH
+07ZCREJ1487Q3Z2,1,sudden_spike,97.19,61.46,36.75,0,57,4 missing returns (high) | Sales spike 14.1x (extreme) | Sales volatility 1.61 (high),3,77.12,3,HIGH
+24TXUOI8318T5ZX,1,shell_company,99.42,79.19,25.88,0,40,ITC ratio 89.6x (extreme),1,77.06,3,HIGH
+36SZTVM1651Z7ZU,1,fake_itc,99.91,30.3,73.37,1,41,ITC ratio 2.1x (high) | 2 missing return(s) | Invoice match rate 83%,3,77.04,3,HIGH
+16RHZWT9547S7ZB,1,fake_itc,99.85,19.9,79.36,1,48,ITC ratio 3.4x (extreme) | 2 missing return(s),2,76.96,3,HIGH
+36IBCNE7105T5Z8,1,fake_itc,99.86,78.43,20.74,0,48,ITC ratio 3.6x (extreme) | 1 missing return(s),2,76.94,3,HIGH
+13YHAQQ3950R6ZW,1,fake_itc,99.8,16.89,81.51,1,48,ITC ratio 3.4x (extreme) | 2 missing return(s),2,76.73,3,HIGH
+08POCFX6565P9Z5,1,sudden_spike,99.33,47.27,78.27000000000001,1,37,Sales spike 23.9x (extreme) | Sales volatility 1.80 (high),2,76.7,2,HIGH
+36FCOMK2625P8Z2,1,fake_itc,99.8,70.22,27.55,0,48,ITC ratio 3.0x (extreme) | 1 missing return(s),2,76.57,3,HIGH
+12DSCIN4403P5Z5,1,sudden_spike,96.97,47.85,82.83,1,33,2 missing return(s) | Sales spike 5.9x (high) | Sales volatility 1.29 (high),3,76.56,2,HIGH
+32PPYCU0029D4ZG,1,fake_itc,99.92,20.44,77.09,1,48,ITC ratio 3.4x (extreme) | Invoice match rate 84%,2,76.55,3,HIGH
+17SVHZQ3991N1Z2,1,fake_itc,99.93,14.78,87.5,1,40,ITC ratio 3.3x (extreme),1,76.55,3,HIGH
+11QDPFP4182M2ZY,1,shell_company,99.91,16.13,81.31,1,48,ITC ratio 73.7x (extreme) | 1 missing return(s),2,76.53,3,HIGH
+02WYNIY2827U5ZL,1,shell_company,99.8,22.17,75.39,1,48,ITC ratio 89.0x (extreme) | 1 missing return(s),2,76.52,3,HIGH
+15YWCRO9331D8ZF,1,sudden_spike,97.84,68.21,33.4,0,45,1 missing return(s) | Sales spike 13.8x (extreme) | Sales volatility 1.81 (high),3,76.4,3,HIGH
+02QHQVJ7381O5Z1,1,missing_returns,98.67,64.43,38.97,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 81%,3,76.38,3,HIGH
+20CJXYB3299J3ZN,1,fake_itc,99.82,46.65,78.94,1,33,ITC ratio 2.8x (high) | 1 missing return(s),2,76.28,2,HIGH
+17FEDBP2846A3ZY,1,shell_company,99.79,22.74,78.43,1,40,ITC ratio 47.2x (extreme),1,76.22,3,HIGH
+17LLYND5534E1ZK,1,fake_itc,99.86,17.39,78.9,1,48,ITC ratio 3.3x (extreme) | 2 missing return(s),2,76.22,3,HIGH
+32VNALD6811L2ZJ,1,fake_itc,99.91,19.86,75.64,1,48,ITC ratio 3.4x (extreme) | Invoice match rate 80%,2,76.04,3,HIGH
+06PDLSJ0369B5ZS,1,missing_returns,99.49,69.55,27.06,0,47,6 missing returns (critical) | Filing rate 67% (low),2,76.02,3,HIGH
+08KWJVA2687A3Z2,1,shell_company,98.51,64.64,37.25,0,40,ITC ratio 88.1x (extreme),1,75.95,3,HIGH
+03OXVLD9363Y1ZH,1,shell_company,99.23,61.0,38.05,0,40,ITC ratio 65.4x (extreme),1,75.49,3,HIGH
+27HKNUG7899B6ZS,1,fake_itc,99.59,21.47,76.12,1,41,ITC ratio 2.7x (high) | 2 missing return(s) | Invoice match rate 75%,3,75.4,3,HIGH
+10LZQPP5548K6ZB,1,fake_itc,99.95,13.9,78.03999999999999,1,48,ITC ratio 3.4x (extreme) | Invoice match rate 82%,2,75.17,3,HIGH
+08BNDHG7085E5ZP,1,fake_itc,99.77,12.19,79.91,1,48,ITC ratio 3.5x (extreme) | Invoice match rate 84%,2,75.14,3,HIGH
+04UMKZH2031D5ZU,1,shell_company,97.22,65.74,23.75,0,56,ITC ratio 57.0x (extreme) | 2 missing return(s) | Invoice match rate 83%,3,74.8,3,HIGH
+37SHEVF3393R6ZQ,1,shell_company,99.8,28.79,65.95,1,40,ITC ratio 111.3x (extreme),1,74.62,3,HIGH
+14EDIPO4445X3ZT,1,sudden_spike,99.06,43.47,73.82,1,37,Sales spike 11.0x (extreme) | Sales volatility 1.59 (high),2,74.54,2,HIGH
+23GFRDS9596Q6Z2,1,sudden_spike,97.38,36.76,84.96,1,33,2 missing return(s) | Sales spike 8.5x (high) | Sales volatility 1.74 (high),3,74.46,2,HIGH
+33ZQIRP0199F2ZF,1,sudden_spike,96.7,42.18,85.14,1,25,Sales spike 9.3x (high) | Sales volatility 1.36 (high),2,74.42,2,HIGH
+07MBLOX8096Q7ZX,1,fake_itc,99.85,5.74,83.13,1,48,ITC ratio 3.1x (extreme) | 1 missing return(s),2,74.36,3,HIGH
+09BWJMU2993X5ZK,1,sudden_spike,99.2,51.42,42.760000000000005,0,73,2 missing return(s) | Sales spike 13.0x (extreme) | Invoice match rate 85% | New company (1yr) with high turnover | Sales volatility 1.64 (high),5,74.21,2,HIGH
+14ARHRH1711T1ZE,1,fake_itc,99.94,17.79,74.28,1,41,ITC ratio 2.6x (high) | 1 missing return(s) | Invoice match rate 83%,3,74.15,3,HIGH
+23WQWWL0869C1ZN,1,sudden_spike,99.43,62.93,26.73,0,45,Sales spike 13.2x (extreme) | Invoice match rate 84% | Sales volatility 1.64 (high),3,73.97,3,HIGH
+33UUMOQ7597R3Z6,1,fake_itc,99.85,60.48,28.18,0,45,ITC ratio 1.8x (high) | 3 missing returns (high),2,73.86,3,HIGH
+37BDFJX8960I3ZR,1,fake_itc,99.87,16.21,74.59,1,41,ITC ratio 2.4x (high) | 1 missing return(s) | Invoice match rate 84%,3,73.8,3,HIGH
+04SCVAK2570U3ZY,1,fake_itc,99.49,42.52,78.34,1,25,ITC ratio 1.5x (high),1,73.79,2,HIGH
+08RZTZL1694W5ZG,1,fake_itc,99.83,74.86,40.66,0,33,ITC ratio 2.4x (high) | 1 missing return(s),2,73.77,2,HIGH
+32VLLKI6371F2Z0,1,fake_itc,99.89,4.89,76.37,1,56,ITC ratio 3.7x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,73.68,3,HIGH
+01RCQYS8337R5Z5,1,shell_company,99.27,30.18,61.49,1,40,ITC ratio 104.1x (extreme),1,73.66,3,HIGH
+01QOZZV4394H2ZV,1,fake_itc,99.95,8.6,76.97999999999999,1,48,ITC ratio 3.2x (extreme) | 1 missing return(s),2,73.58,3,HIGH
+03BUOOF2364A7ZH,1,sudden_spike,98.37,42.96,73.81,1,33,1 missing return(s) | Sales spike 9.4x (high) | Sales volatility 1.95 (high),3,73.57,2,HIGH
+18ISQLC0146P3ZB,1,fake_itc,99.66,11.39,73.58,1,48,ITC ratio 3.7x (extreme) | 1 missing return(s),2,73.32,3,HIGH
+16UVAEZ6084E2ZJ,1,fake_itc,99.82,59.91,39.5,0,56,ITC ratio 3.4x (extreme) | 1 missing return(s) | Invoice match rate 80%,3,73.19,2,HIGH
+03LULGP5386W7ZG,1,sudden_spike,97.41,53.13,44.25,0,65,3 missing returns (high) | Sales spike 13.8x (extreme) | Invoice match rate 76% | Sales volatility 1.75 (high),4,73.19,2,HIGH
+17WNUQD8890M6Z4,1,fake_itc,99.94,17.36,66.28,1,48,ITC ratio 3.7x (extreme) | 1 missing return(s),2,73.09,3,HIGH
+05UDMCJ4390K8ZD,1,sudden_spike,98.19,53.25,42.6,0,65,4 missing returns (high) | Sales spike 14.0x (extreme) | Invoice match rate 84% | Sales volatility 1.62 (high),4,73.08,2,HIGH
+23QSOQN1837M1ZP,1,fake_itc,99.79,6.69,77.13,1,48,ITC ratio 3.5x (extreme) | 1 missing return(s),2,73.08,3,HIGH
+05FRMXZ3686O8ZG,1,sudden_spike,99.37,63.89,46.52,0,37,Sales spike 13.7x (extreme) | Sales volatility 1.55 (high),2,72.93,2,HIGH
+36GYZMN3661Z5Z2,1,sudden_spike,97.19,56.15,44.95,0,57,3 missing returns (high) | Sales spike 15.5x (extreme) | Sales volatility 1.57 (high),3,72.84,2,HIGH
+16MNRLN0061B9ZO,1,missing_returns,99.78,56.27,46.47,0,47,7 missing returns (critical) | Filing rate 61% (low),2,72.66,2,HIGH
+10QDGWQ4415X8ZQ,1,shell_company,99.64,54.2,40.760000000000005,0,60,ITC ratio 104.5x (extreme) | 3 missing returns (high),2,72.61,2,HIGH
+16INCJT3617N4ZI,1,fake_itc,99.81,70.57,40.15,0,33,ITC ratio 2.4x (high) | 2 missing return(s),2,72.56,2,HIGH
+29IWHOS2655W3ZK,1,fake_itc,99.48,15.6,66.26,1,48,ITC ratio 3.2x (extreme) | 1 missing return(s),2,72.48,3,HIGH
+17FHBYW9644L7Z7,1,sudden_spike,99.03,44.16,59.71,1,45,1 missing return(s) | Sales spike 11.4x (extreme) | Sales volatility 1.68 (high),3,72.38,2,HIGH
+22GZVMP5686B2ZG,1,shell_company,99.81,59.11,36.65,0,56,ITC ratio 69.6x (extreme) | 1 missing return(s) | Invoice match rate 82%,3,72.27,2,HIGH
+12QNULG2778B7ZA,1,shell_company,99.84,46.78,36.64,0,76,ITC ratio 118.2x (extreme) | 2 missing return(s) | Invoice match rate 80% | New company (1yr) with high turnover,4,72.2,2,HIGH
+12UPJEG1552S3ZG,1,fake_itc,99.9,2.43,82.01,1,40,ITC ratio 3.1x (extreme),1,72.08,3,HIGH
+06PWNTF2692L3ZZ,1,missing_returns,98.74,54.92,46.82,0,47,6 missing returns (critical) | Filing rate 67% (low),2,72.04,2,HIGH
+02OQROH4016Q4ZB,1,missing_returns,98.03,51.02,39.09,0,68,10 missing returns (critical) | Filing rate 44% (very low) | Invoice match rate 83%,3,72.04,2,HIGH
+09HVFSB5725Z4ZM,1,fake_itc,99.96,58.78,40.64,0,48,ITC ratio 3.6x (extreme) | 2 missing return(s),2,72.04,2,HIGH
+13QYOQN8293T9Z2,1,missing_returns,98.87,31.5,78.53,1,32,5 missing returns (high) | Filing rate 72% (low),2,71.91,2,HIGH
+13LKJKJ9897H5Z6,1,missing_returns,98.57,68.48,41.78,0,32,5 missing returns (high) | Filing rate 72% (low),2,71.86,2,HIGH
+23YARIF3727Q5ZW,1,sudden_spike,98.99,52.24,37.510000000000005,0,65,3 missing returns (high) | Sales spike 10.0x (extreme) | Invoice match rate 80% | Sales volatility 1.67 (high),4,71.83,2,HIGH
+21ECTOW8636W6ZG,1,fake_itc,99.84,7.58,75.38,1,41,ITC ratio 2.3x (high) | 1 missing return(s) | Invoice match rate 85%,3,71.83,3,HIGH
+24AGWTJ5512N4ZN,1,missing_returns,99.27,46.84,53.1,0,47,7 missing returns (critical) | Filing rate 61% (low),2,71.78,2,HIGH
+07XNUTD5478Q1ZU,1,fake_itc,99.82,10.84,67.56,1,48,ITC ratio 3.2x (extreme) | 1 missing return(s),2,71.74,3,HIGH
+37ERYMW5273I1ZH,1,fake_itc,99.83,71.92,39.85,0,25,ITC ratio 1.8x (high),1,71.63,2,HIGH
+03SPDRV7870O3Z5,1,fake_itc,99.85,48.61,43.86,0,56,ITC ratio 3.6x (extreme) | 1 missing return(s) | Invoice match rate 78%,3,71.46,2,HIGH
+32WETXE2606C8ZW,1,fake_itc,99.92,35.08,70.88,1,33,ITC ratio 2.5x (high) | 1 missing return(s),2,71.41,2,HIGH
+12GVVPC8542F6ZU,1,sudden_spike,99.19,51.3,43.05,0,53,1 missing return(s) | Sales spike 13.3x (extreme) | Invoice match rate 78% | Sales volatility 1.71 (high),4,71.25,2,HIGH
+32PQQVF8427M6ZK,1,fake_itc,99.29,16.48,60.66,1,48,ITC ratio 3.2x (extreme) | Invoice match rate 79%,2,71.24,3,HIGH
+06EPGEV5060K6ZS,1,sudden_spike,99.6,47.94,45.0,0,53,1 missing return(s) | Sales spike 11.6x (extreme) | Invoice match rate 85% | Sales volatility 1.75 (high),4,71.05,2,HIGH
+14CZCOF9831P9ZG,1,sudden_spike,99.37,42.82,60.04,1,37,Sales spike 11.1x (extreme) | Sales volatility 1.56 (high),2,71.04,2,HIGH
+29YUIHJ1594T3ZV,1,fake_itc,99.8,9.45,66.2,1,48,ITC ratio 3.4x (extreme) | Invoice match rate 82%,2,71.04,3,HIGH
+17OOJAD3327M1ZV,1,fake_itc,99.78,71.02,38.2,0,25,ITC ratio 1.6x (high),1,70.98,2,HIGH
+05LGUJJ4080P7ZG,1,missing_returns,99.18,53.46,43.4,0,47,8 missing returns (critical) | Filing rate 56% (low),2,70.98,2,HIGH
+14MDUMH0441U4ZI,1,fake_itc,99.85,5.2,69.64,1,48,ITC ratio 3.5x (extreme) | 1 missing return(s),2,70.86,3,HIGH
+24FFWBS3434H2ZL,1,sudden_spike,99.56,50.83,41.25,0,53,1 missing return(s) | Sales spike 15.3x (extreme) | Invoice match rate 76% | Sales volatility 1.77 (high),4,70.82,2,HIGH
+10AHHWB2275Z4Z1,1,fake_itc,99.67,20.78,87.82,1,25,ITC ratio 2.3x (high),1,70.78,2,HIGH
+04XRCTA8003E3ZC,1,sudden_spike,98.92,49.32,47.99,0,45,1 missing return(s) | Sales spike 23.1x (extreme) | Sales volatility 1.77 (high),3,70.7,2,HIGH
+24TVOPO3136Y7ZD,1,shell_company,99.91,45.73,48.2,0,48,ITC ratio 86.7x (extreme) | 1 missing return(s),2,70.65,2,HIGH
+01ETYFA0518D4ZB,1,sudden_spike,98.54,52.86,37.35,0,57,3 missing returns (high) | Sales spike 11.0x (extreme) | Sales volatility 1.44 (high),3,70.59,2,HIGH
+05YIROO0113Y7ZQ,1,sudden_spike,99.62,43.37,47.49,0,53,1 missing return(s) | Sales spike 17.6x (extreme) | Invoice match rate 84% | Sales volatility 1.61 (high),4,70.53,2,HIGH
+14KALXV1493F9ZA,1,missing_returns,98.84,54.06,41.39,0,47,9 missing returns (critical) | Filing rate 50% (low),2,70.51,2,HIGH
+01RPKAE0595D8ZD,1,shell_company,99.46,37.04,43.2,0,68,ITC ratio 68.2x (extreme) | 4 missing returns (high) | Invoice match rate 83%,3,70.07,2,HIGH
+08UUECL4476U2ZD,1,sudden_spike,97.96,48.32,47.53,0,45,1 missing return(s) | Sales spike 15.3x (extreme) | Sales volatility 1.70 (high),3,70.0,2,HIGH
+11IBCFA4824W5ZC,1,sudden_spike,97.35,31.97,71.94,1,33,1 missing return(s) | Sales spike 7.4x (high) | Sales volatility 1.55 (high),3,70.0,2,HIGH
+21XPEBL6681Z3ZJ,1,missing_returns,99.26,52.14,40.38,0,47,8 missing returns (critical) | Filing rate 56% (low),2,69.92,2,HIGH
+36OHETN3715N8Z8,1,missing_returns,97.96,49.41,40.1,0,55,8 missing returns (critical) | Filing rate 56% (low) | Invoice match rate 75%,3,69.91,2,HIGH
+23ESWQB2152A2Z1,1,missing_returns,99.57,43.97,42.83,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 80%,3,69.8,2,HIGH
+32OKRYU9849M7Z3,1,missing_returns,98.83,50.7,36.8,0,55,9 missing returns (critical) | Filing rate 50% (low) | Invoice match rate 83%,3,69.72,2,HIGH
+20DYYCU9194U2ZP,1,missing_returns,99.02,55.21,36.82,0,47,6 missing returns (critical) | Filing rate 67% (low),2,69.71,2,HIGH
+20TIVGT2076N1ZG,1,fake_itc,99.79,57.7,27.6,0,56,ITC ratio 3.7x (extreme) | 2 missing return(s) | Invoice match rate 83%,3,69.65,2,HIGH
+08PMCXR3813X3ZQ,1,missing_returns,99.48,53.23,30.0,0,60,10 missing returns (critical) | Filing rate 44% (very low),2,69.63,2,HIGH
+03RSPYT8875I3ZE,1,shell_company,99.67,42.33,35.84,0,68,ITC ratio 105.5x (extreme) | 4 missing returns (high) | Invoice match rate 81%,3,69.63,2,HIGH
+06LGGNY2734G1Z9,1,shell_company,99.48,52.99,37.05,0,48,ITC ratio 115.9x (extreme) | 2 missing return(s),2,69.53,2,HIGH
+22QRBMQ1680Q7ZV,1,fake_itc,99.86,63.5,39.79,0,25,ITC ratio 1.9x (high),1,69.52,2,HIGH
+14QEBST8393N5ZT,1,missing_returns,96.5,22.77,80.93,1,32,5 missing returns (high) | Filing rate 72% (low),2,69.5,2,HIGH
+04VRDCN7122J5Z3,1,missing_returns,98.44,51.55,40.25,0,47,8 missing returns (critical) | Filing rate 56% (low),2,69.45,2,HIGH
+37AFRAM9497D1Z7,1,fake_itc,99.96,24.15,78.68,1,25,ITC ratio 2.0x (high),1,69.44,2,HIGH
+37REKCW7645X2ZQ,1,missing_returns,98.97,53.19,37.66,0,47,9 missing returns (critical) | Filing rate 50% (low),2,69.4,2,HIGH
+13AKGPC7804G2ZP,1,missing_returns,97.44,48.91,43.91,0,47,9 missing returns (critical) | Filing rate 50% (low),2,69.36,2,HIGH
+18CMFZI4906W7Z1,1,fake_itc,99.76,55.01,37.99,0,41,ITC ratio 2.8x (high) | 2 missing return(s) | Invoice match rate 85%,3,69.32,2,HIGH
+22IGGHL3267Z6ZT,1,sudden_spike,99.62,51.28,39.5,0,45,Sales spike 22.8x (extreme) | Invoice match rate 81% | Sales volatility 1.81 (high),3,69.31,2,HIGH
+27FQBKQ5139B1Z5,1,fake_itc,99.92,15.95,81.57,1,33,ITC ratio 1.6x (high) | 1 missing return(s),2,69.3,2,HIGH
+07MIVDV9665F7ZE,1,missing_returns,98.9,40.56,37.9,0,67,6 missing returns (critical) | Filing rate 67% (low) | New company (1yr) with high turnover,3,69.28,2,HIGH
+32UJAGD5037R9ZO,1,missing_returns,97.52,53.3,38.8,0,47,8 missing returns (critical) | Filing rate 56% (low),2,69.21,2,HIGH
+05IOMQP0738G7Z0,1,missing_returns,98.91,50.82,39.36,0,47,8 missing returns (critical) | Filing rate 56% (low),2,69.21,2,HIGH
+11BJOPF1429Z6Z2,1,fake_itc,99.86,21.9,75.22999999999999,1,33,ITC ratio 2.8x (high) | 2 missing return(s),2,69.18,2,HIGH
+36AANDY6191T1ZY,1,shell_company,99.71,38.35,37.88,0,68,ITC ratio 67.9x (extreme) | 1 missing return(s) | New company (1yr) with high turnover,3,69.16,2,HIGH
+20RMLFM9710Q6ZF,1,sudden_spike,98.47,57.53,34.2,0,45,Sales spike 21.7x (extreme) | Invoice match rate 77% | Sales volatility 1.86 (high),3,69.15,2,HIGH
+09RQYVS1317Z5ZB,1,sudden_spike,99.69,46.16,43.760000000000005,0,45,1 missing return(s) | Sales spike 15.9x (extreme) | Sales volatility 1.83 (high),3,69.12,2,HIGH
+37IDFFK7059T2ZV,1,shell_company,99.49,46.83,41.54,0,48,ITC ratio 105.9x (extreme) | Invoice match rate 78%,2,69.11,2,HIGH
+29DVHGA1782J4Z9,1,missing_returns,99.63,41.97,41.89,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 83%,3,69.09,2,HIGH
+20PJWMJ2846Z6ZU,1,sudden_spike,90.31,56.61,41.46,0,53,1 missing return(s) | Sales spike 8.8x (high) | New company (1yr) with high turnover | Sales volatility 1.33 (high),4,69.08,2,HIGH
+09MZFQU3952Q7ZF,1,shell_company,99.66,43.08,44.84,0,48,ITC ratio 84.0x (extreme) | 1 missing return(s),2,69.06,2,HIGH
+32IFWQV3781R7ZA,1,shell_company,99.19,51.85,36.59,0,48,ITC ratio 76.3x (extreme) | 1 missing return(s),2,69.03,2,HIGH
+17EDQGU9740L6ZU,1,missing_returns,99.91,42.62,45.32,0,47,9 missing returns (critical) | Filing rate 50% (low),2,69.0,2,HIGH
+14CSHQN5333J2Z7,1,sudden_spike,99.18,55.97,33.86,0,45,1 missing return(s) | Sales spike 12.8x (extreme) | Sales volatility 1.52 (high),3,68.92,2,HIGH
+03AAFWT3827P4Z9,1,fake_itc,99.9,73.61,27.18,0,25,ITC ratio 1.6x (high),1,68.91,2,HIGH
+22ZSLSR7891A5ZN,1,fake_itc,99.92,51.49,40.24,0,40,ITC ratio 3.2x (extreme),1,68.9,2,HIGH
+19ASUMK7802M8ZH,1,fake_itc,99.95,21.83,73.99,1,33,ITC ratio 2.2x (high) | 1 missing return(s),2,68.89,2,HIGH
+23EZVFY0948F8ZA,1,sudden_spike,98.53,50.76,39.82,0,45,2 missing return(s) | Sales spike 22.1x (extreme) | Sales volatility 1.70 (high),3,68.88,2,HIGH
+05GRBIK1333G1Z2,1,sudden_spike,99.47,51.78,37.42,0,45,1 missing return(s) | Sales spike 17.7x (extreme) | Sales volatility 1.69 (high),3,68.86,2,HIGH
+21XAMTC4462X9Z5,1,shell_company,99.58,31.76,55.39,1,48,ITC ratio 82.0x (extreme) | 1 missing return(s),2,68.84,2,HIGH
+03KDDOH4693V6ZQ,1,missing_returns,89.27,35.31,78.2,1,28,4 missing returns (high) | Invoice match rate 84%,2,68.82,2,HIGH
+02TUURW7017U2ZF,1,missing_returns,96.96,59.92,26.43,0,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 78%,3,68.77,2,HIGH
+02DJSUH0488C1ZU,1,shell_company,99.48,37.11,44.42,0,56,ITC ratio 80.2x (extreme) | 2 missing return(s) | Invoice match rate 80%,3,68.6,2,HIGH
+13GTYHS0660D8ZT,1,shell_company,99.45,50.88,35.44,0,48,ITC ratio 89.0x (extreme) | 1 missing return(s),2,68.59,2,HIGH
+37HGNDO5273M1Z3,1,missing_returns,99.06,46.6,40.35,0,47,8 missing returns (critical) | Filing rate 56% (low),2,68.46,2,HIGH
+32DOVVX0770X3ZV,1,shell_company,99.86,37.13,43.09,0,56,ITC ratio 89.2x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,68.41,2,HIGH
+33JNMYU1391D4ZM,1,shell_company,99.71,37.56,40.36,0,60,ITC ratio 111.7x (extreme) | 3 missing returns (high),2,68.38,2,HIGH
+27QLBRA5859N2ZL,1,shell_company,99.72,47.25,37.7,0,48,ITC ratio 116.8x (extreme) | 1 missing return(s),2,68.34,2,HIGH
+06QQBTH3144I8Z7,1,shell_company,99.05,41.54,44.03,0,48,ITC ratio 62.3x (extreme) | 2 missing return(s),2,68.26,2,HIGH
+05HYUEN1026B9Z3,1,shell_company,99.41,39.19,45.83,0,48,ITC ratio 52.3x (extreme) | 1 missing return(s),2,68.25,2,HIGH
+05JYUSH1301B4ZT,1,missing_returns,98.89,44.35,42.010000000000005,0,47,7 missing returns (critical) | Filing rate 61% (low),2,68.25,2,HIGH
+12JYADL3401L7ZU,1,fake_itc,99.8,41.23,47.9,0,40,ITC ratio 3.2x (extreme),1,68.21,2,HIGH
+06KAELT7553I9ZA,1,missing_returns,99.43,39.36,45.85,0,47,7 missing returns (critical) | Filing rate 61% (low),2,68.15,2,HIGH
+36EMYMK3111Y4ZN,1,fake_itc,99.88,11.22,86.5,1,25,ITC ratio 2.6x (high),1,68.14,2,HIGH
+05ALVBZ6420X1Z4,1,shell_company,99.63,39.77,39.56,0,56,ITC ratio 50.8x (extreme) | 1 missing return(s) | Invoice match rate 83%,3,68.1,2,HIGH
+19QWHYO7212B9ZY,1,shell_company,99.78,44.37,39.15,0,48,ITC ratio 90.3x (extreme) | Invoice match rate 84%,2,68.0,2,HIGH
+32SFWLV1298P8Z0,1,missing_returns,98.02,46.09,35.68,0,55,8 missing returns (critical) | Filing rate 56% (low) | Invoice match rate 74%,3,68.0,2,HIGH
+14HJRIM4741U2ZR,1,sudden_spike,99.25,51.34,34.55,0,45,2 missing return(s) | Sales spike 11.9x (extreme) | Sales volatility 1.61 (high),3,67.96,2,HIGH
+01XDBHF0545O6ZI,1,missing_returns,98.66,40.19,40.47,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 83%,3,67.95,2,HIGH
+18HRXRR9143V4ZS,1,fake_itc,99.77,42.3,40.93,0,48,ITC ratio 3.6x (extreme) | 2 missing return(s),2,67.93,2,HIGH
+02PFPQF2432N1ZE,1,fake_itc,99.87,41.19,46.67,0,40,ITC ratio 3.6x (extreme),1,67.92,2,HIGH
+33XKBWZ4745H5ZT,1,sudden_spike,99.52,45.58,39.760000000000005,0,45,1 missing return(s) | Sales spike 16.8x (extreme) | Sales volatility 1.71 (high),3,67.92,2,HIGH
+29TLRCY7915N3ZL,1,missing_returns,98.92,42.05,42.57,0,47,7 missing returns (critical) | Filing rate 61% (low),2,67.83,2,HIGH
+08CUMIX6066U2Z3,1,missing_returns,99.01,40.23,44.23,0,47,7 missing returns (critical) | Filing rate 61% (low),2,67.82,2,HIGH
+36MTKYU2097X5ZD,1,missing_returns,99.57,44.16,39.53,0,47,9 missing returns (critical) | Filing rate 50% (low),2,67.82,2,HIGH
+01QOCFC6702R4ZK,1,missing_returns,99.51,39.04,44.64,0,47,6 missing returns (critical) | Filing rate 67% (low),2,67.8,2,HIGH
+14MGTXW6601Q9ZR,1,fake_itc,99.88,12.55,78.75999999999999,1,33,ITC ratio 2.7x (high) | Invoice match rate 83%,2,67.74,2,HIGH
+02FTCDB2765L4ZQ,1,sudden_spike,99.87,46.79,37.33,0,45,1 missing return(s) | Sales spike 15.9x (extreme) | Sales volatility 1.72 (high),3,67.73,2,HIGH
+06TTBNX5396W1Z2,1,sudden_spike,98.35,44.64,41.53,0,45,2 missing return(s) | Sales spike 10.5x (extreme) | Sales volatility 1.48 (high),3,67.72,2,HIGH
+24XYVWP1566M8ZP,1,fake_itc,99.82,8.87,82.38,1,33,ITC ratio 1.6x (high) | 1 missing return(s),2,67.7,2,HIGH
+12YXXPE5561V5ZS,1,missing_returns,99.63,36.42,41.88,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 83%,3,67.7,2,HIGH
+36DOPCB3779C9Z8,1,fake_itc,99.76,43.37,33.81,0,56,ITC ratio 3.2x (extreme) | 1 missing return(s) | Invoice match rate 82%,3,67.61,2,HIGH
+22MOOMO1025M6ZS,1,sudden_spike,98.31,44.95,40.74,0,45,2 missing return(s) | Sales spike 10.2x (extreme) | Sales volatility 1.59 (high),3,67.58,2,HIGH
+03TPQMZ8725T7Z9,1,shell_company,99.47,30.65,39.510000000000005,0,68,ITC ratio 54.7x (extreme) | 3 missing returns (high) | Invoice match rate 76%,3,67.55,2,HIGH
+06MRMJR0824R2ZY,1,shell_company,99.56,37.55,44.45,0,48,ITC ratio 99.5x (extreme) | 1 missing return(s),2,67.55,2,HIGH
+08UZHSU8277O5ZF,1,sudden_spike,99.23,45.7,38.56,0,45,1 missing return(s) | Sales spike 14.1x (extreme) | Sales volatility 1.61 (high),3,67.55,2,HIGH
+12IVOJY8678K1ZX,1,sudden_spike,99.55,47.87,35.879999999999995,0,45,1 missing return(s) | Sales spike 18.8x (extreme) | Sales volatility 1.80 (high),3,67.53,2,HIGH
+24OCCOM9655C6Z2,1,fake_itc,99.72,5.94,84.75,1,33,ITC ratio 2.5x (high) | Invoice match rate 83%,2,67.52,2,HIGH
+37LHIWS7903B1Z7,1,fake_itc,99.77,6.89,83.51,1,33,ITC ratio 2.2x (high) | 1 missing return(s),2,67.47,2,HIGH
+20QTRNM4245R6Z8,1,missing_returns,99.31,43.06,39.35,0,47,7 missing returns (critical) | Filing rate 61% (low),2,67.41,2,HIGH
+06EBNDW3567K2Z5,1,missing_returns,98.79,42.29,40.79,0,47,7 missing returns (critical) | Filing rate 61% (low),2,67.4,2,HIGH
+37DONQM1679A2ZB,1,shell_company,99.74,43.57,42.31,0,40,ITC ratio 99.1x (extreme),1,67.38,2,HIGH
+03SDTLX2092V7Z1,1,shell_company,99.56,42.36,38.92,0,48,ITC ratio 66.1x (extreme) | 1 missing return(s),2,67.37,2,HIGH
+05CUPUR7944H6ZM,1,fake_itc,99.71,47.97,37.2,0,41,ITC ratio 2.2x (high) | 2 missing return(s) | Invoice match rate 84%,3,67.34,2,HIGH
+14ZUHAB0430H8ZT,1,shell_company,99.27,31.37,45.18,0,56,ITC ratio 89.7x (extreme) | 2 missing return(s) | Invoice match rate 80%,3,67.28,2,HIGH
+03BIBZY0904Y3Z0,1,missing_returns,99.64,38.21,42.92,0,47,6 missing returns (critical) | Filing rate 67% (low),2,67.21,2,HIGH
+29RYSKG9205L6Z2,1,missing_returns,99.86,42.93,37.83,0,47,9 missing returns (critical) | Filing rate 50% (low),2,67.19,2,HIGH
+36EXXMN9969C3ZK,1,sudden_spike,98.8,47.29,36.06,0,45,2 missing return(s) | Sales spike 10.5x (extreme) | Sales volatility 1.70 (high),3,67.17,2,HIGH
+14AMXOE0354N7ZB,1,missing_returns,98.73,38.96,43.260000000000005,0,47,7 missing returns (critical) | Filing rate 61% (low),2,67.16,2,HIGH
+03XILQH5533N3ZA,1,missing_returns,97.94,38.58,44.760000000000005,0,47,6 missing returns (critical) | Filing rate 67% (low),2,67.16,2,HIGH
+17ZSXLM6275V8Z9,1,shell_company,99.76,39.06,40.96,0,48,ITC ratio 115.1x (extreme) | 1 missing return(s),2,67.12,2,HIGH
+04EVPWO4586Q2ZT,1,shell_company,99.33,43.25,37.33,0,48,ITC ratio 74.1x (extreme) | 1 missing return(s),2,67.11,2,HIGH
+23WGSVT6452N7Z2,1,missing_returns,98.96,54.07,27.6,0,47,9 missing returns (critical) | Filing rate 50% (low),2,67.1,2,HIGH
+29XQULU4837Y4ZY,1,shell_company,99.54,35.74,44.47,0,48,ITC ratio 95.5x (extreme) | 1 missing return(s),2,67.09,2,HIGH
+29NBAXU5137C8ZK,1,sudden_spike,98.21,42.33,41.120000000000005,0,45,2 missing return(s) | Sales spike 12.6x (extreme) | Sales volatility 1.62 (high),3,66.99,2,HIGH
+32NAUOA8215S8ZX,1,missing_returns,98.77,36.35,40.16,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 84%,3,66.95,2,HIGH
+22WDTYB7222V4Z7,1,fake_itc,99.87,5.61,82.47,1,33,ITC ratio 1.6x (high) | 1 missing return(s),2,66.92,2,HIGH
+05LUHTL4438L5ZH,1,missing_returns,97.39,38.08,45.0,0,47,6 missing returns (critical) | Filing rate 67% (low),2,66.91,2,HIGH
+18NNPNZ4221N2Z9,1,sudden_spike,99.05,45.6,36.33,0,45,1 missing return(s) | Sales spike 17.0x (extreme) | Sales volatility 1.74 (high),3,66.9,2,HIGH
+03GQXDQ6441X4Z4,1,shell_company,99.8,35.3,38.99,0,56,ITC ratio 92.6x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,66.9,2,HIGH
+23CHTKH2742A5Z3,1,sudden_spike,98.79,44.37,37.81,0,45,1 missing return(s) | Sales spike 10.8x (extreme) | Sales volatility 1.47 (high),3,66.87,2,HIGH
+15USUPJ0347Z9Z0,1,missing_returns,98.95,42.21,38.49,0,47,9 missing returns (critical) | Filing rate 50% (low),2,66.86,2,HIGH
+12NZUWE7248R3Z3,1,sudden_spike,99.05,57.84,23.87,0,45,1 missing return(s) | Sales spike 13.9x (extreme) | Sales volatility 1.69 (high),3,66.84,2,HIGH
+07PEUZT3404Y5ZI,1,missing_returns,99.14,48.68,31.59,0,47,9 missing returns (critical) | Filing rate 50% (low),2,66.82,2,HIGH
+05DOLJW4963G2Z4,1,shell_company,99.61,45.7,38.13,0,40,ITC ratio 71.7x (extreme),1,66.82,2,HIGH
+11ODJHS7337M4ZI,1,sudden_spike,99.55,37.98,42.89,0,45,1 missing return(s) | Sales spike 13.5x (extreme) | Sales volatility 1.68 (high),3,66.81,2,HIGH
+20HGYUK0316V7ZH,1,missing_returns,99.61,44.4,35.120000000000005,0,47,7 missing returns (critical) | Filing rate 61% (low),2,66.79,2,HIGH
+17KFZTD3258C3ZK,1,missing_returns,98.52,39.79,36.4,0,55,8 missing returns (critical) | Filing rate 56% (low) | Invoice match rate 84%,3,66.78,2,HIGH
+16VWPRA2284R6ZQ,1,sudden_spike,99.23,41.32,39.74,0,45,2 missing return(s) | Sales spike 11.9x (extreme) | Sales volatility 1.56 (high),3,66.75,2,HIGH
+24YVIDO3390V2Z6,1,missing_returns,92.37,42.67,62.9,1,20,4 missing returns (high),1,66.72,2,HIGH
+19RDDAK6530W8Z3,1,fake_itc,99.77,62.42,24.99,0,33,ITC ratio 2.0x (high) | 1 missing return(s),2,66.72,2,HIGH
+05MDFNU4210X8ZN,1,shell_company,99.71,34.77,43.64,0,48,ITC ratio 108.3x (extreme) | 1 missing return(s),2,66.7,2,HIGH
+19JTDLQ3282R4ZY,1,fake_itc,99.83,11.87,75.1,1,33,ITC ratio 2.6x (high) | 1 missing return(s),2,66.63,2,HIGH
+27BBIRJ5634S7ZO,1,missing_returns,99.34,31.58,42.82,0,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 82%,3,66.62,2,HIGH
+21LPDSD5947G4Z4,1,shell_company,99.42,32.4,38.88,0,60,ITC ratio 82.4x (extreme) | 3 missing returns (high),2,66.62,2,HIGH
+07LPYTI1447P5ZH,1,shell_company,99.55,34.1,39.18,0,56,ITC ratio 112.2x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,66.56,2,HIGH
+09JCYPF9124U3Z3,1,shell_company,99.72,36.36,41.41,0,48,ITC ratio 97.8x (extreme) | 1 missing return(s),2,66.54,2,HIGH
+37RMXFB4119I9ZG,1,fake_itc,99.81,6.01,80.54,1,33,ITC ratio 2.7x (high) | 1 missing return(s),2,66.52,2,HIGH
+21IPKMH4936W7Z6,1,missing_returns,91.5,28.54,77.46000000000001,1,20,4 missing returns (high),1,66.52,2,HIGH
+27INZHN6246F9ZY,1,fake_itc,99.84,27.46,37.96,0,68,ITC ratio 3.5x (extreme) | 3 missing returns (high) | Invoice match rate 81%,3,66.5,2,HIGH
+11YLDZW7676U3ZD,1,missing_returns,96.77,43.34,38.68,0,47,9 missing returns (critical) | Filing rate 50% (low),2,66.42,2,HIGH
+33AZJKY0302D4Z7,1,shell_company,99.72,28.8,43.54,0,56,ITC ratio 105.4x (extreme) | 1 missing return(s) | Invoice match rate 78%,3,66.39,2,HIGH
+37PLYUL7557B5ZV,1,missing_returns,98.3,39.32,40.43,0,47,7 missing returns (critical) | Filing rate 61% (low),2,66.39,2,HIGH
+17TIWAK8659A8Z6,1,shell_company,99.81,42.72,39.04,0,40,ITC ratio 110.6x (extreme),1,66.37,2,HIGH
+27SRQOA3422N5ZQ,1,shell_company,99.44,39.22,38.15,0,48,ITC ratio 70.5x (extreme) | 1 missing return(s),2,66.35,2,HIGH
+07SXAAJ4648V4Z8,1,missing_returns,99.22,31.44,46.760000000000005,0,47,6 missing returns (critical) | Filing rate 67% (low),2,66.33,2,HIGH
+06ZRWDC3779F7ZB,1,sudden_spike,98.79,58.77,46.04,0,37,Sales spike 11.5x (extreme) | Sales volatility 1.64 (high),2,66.33,1,HIGH
+29CJMWM5144J2ZH,1,missing_returns,97.52,59.53,25.22,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 83%,3,66.32,2,HIGH
+21SHYUS4623Z8Z1,1,sudden_spike,98.82,42.99,36.96,0,45,1 missing return(s) | Sales spike 17.9x (extreme) | Sales volatility 1.69 (high),3,66.32,2,HIGH
+08WWXNV2930S6ZT,1,fake_itc,95.75,13.37,78.05,1,33,ITC ratio 1.5x (high) | 2 missing return(s),2,66.32,2,HIGH
+23KYMCH9303V3ZD,1,fake_itc,99.71,29.89,46.88,0,48,ITC ratio 3.4x (extreme) | 1 missing return(s),2,66.29,2,HIGH
+37YJIRI5506S3ZI,1,missing_returns,99.3,40.61,37.3,0,47,8 missing returns (critical) | Filing rate 56% (low),2,66.28,2,HIGH
+27RQQTB3561K8ZS,1,shell_company,99.72,27.28,44.56,0,56,ITC ratio 99.2x (extreme) | 1 missing return(s) | Invoice match rate 80%,3,66.26,2,HIGH
+37XRVBU1193Y7ZG,1,shell_company,99.79,36.12,40.41,0,48,ITC ratio 69.8x (extreme) | Invoice match rate 84%,2,66.26,2,HIGH
+16BQZAH0163T8Z6,1,shell_company,99.61,39.64,37.08,0,48,ITC ratio 43.0x (extreme) | 1 missing return(s),2,66.24,2,HIGH
+08YXXHB4364T5ZW,1,missing_returns,99.31,39.15,38.41,0,47,8 missing returns (critical) | Filing rate 56% (low),2,66.2,2,HIGH
+22ACOIE0171B3ZY,1,fake_itc,99.65,4.37,81.07,1,33,ITC ratio 2.5x (high) | 1 missing return(s),2,66.19,2,HIGH
+20BJZNZ8076R5ZV,1,shell_company,99.67,37.25,39.04,0,48,ITC ratio 123.9x (extreme) | 2 missing return(s),2,66.16,2,HIGH
+24AHTLV8306N6ZU,1,circular_trading,74.06,55.99,80.18,1,8,2 missing return(s),1,66.16,2,HIGH
+04RWAER1358G2Z2,1,circular_trading,83.61,37.42,90.1,1,0,No flags,0,66.14,2,HIGH
+14RWUXD3504O1ZI,1,missing_returns,99.11,35.37,42.05,0,47,7 missing returns (critical) | Filing rate 61% (low),2,66.09,2,HIGH
+21WYNCT8285V9ZX,1,shell_company,99.05,32.06,40.03,0,56,ITC ratio 103.1x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,66.09,2,HIGH
+08RYJIY5092K7ZA,0,none,99.41,32.33,44.43,0,47,6 missing returns (critical) | Filing rate 67% (low),2,66.03,2,HIGH
+13OGKCB2989R5Z2,1,shell_company,99.86,31.62,43.79,0,48,ITC ratio 98.4x (extreme) | 1 missing return(s),2,66.0,2,HIGH
+19PVPDB4910F8ZH,1,shell_company,99.81,36.82,43.41,0,40,ITC ratio 109.2x (extreme),1,65.99,2,HIGH
+05GBWOB5050I6Z9,1,missing_returns,98.08,39.58,38.83,0,47,7 missing returns (critical) | Filing rate 61% (low),2,65.98,2,HIGH
+02VVTBK4071Y7ZV,1,fake_itc,99.74,41.5,29.2,0,56,ITC ratio 3.0x (extreme) | 2 missing return(s) | Invoice match rate 75%,3,65.98,2,HIGH
+11ZDBFJ4408O7ZB,1,fake_itc,99.88,60.93,23.33,0,33,ITC ratio 2.1x (high) | 1 missing return(s),2,65.97,2,HIGH
+21VLXYG4689Q6ZZ,1,missing_returns,83.29,29.47,85.73,1,20,4 missing returns (high),1,65.95,2,HIGH
+14XRNBI0545F9Z6,1,sudden_spike,99.12,46.7,26.52,0,53,2 missing return(s) | Sales spike 14.0x (extreme) | Invoice match rate 83% | Sales volatility 1.69 (high),4,65.95,2,HIGH
+12DILSO6937D2Z1,1,missing_returns,99.24,36.78,39.84,0,47,7 missing returns (critical) | Filing rate 61% (low),2,65.94,2,HIGH
+32CQKOH1542E7ZU,1,missing_returns,99.69,40.37,35.58,0,47,7 missing returns (critical) | Filing rate 61% (low),2,65.93,2,HIGH
+05SPOOR4712H4ZT,1,shell_company,99.39,31.42,39.47,0,56,ITC ratio 57.8x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,65.91,2,HIGH
+20IWGJT1916S6ZX,1,missing_returns,99.27,34.42,42.0,0,47,6 missing returns (critical) | Filing rate 67% (low),2,65.9,2,HIGH
+19HTKVE8860Q8ZC,1,shell_company,99.84,30.77,39.32,0,56,ITC ratio 106.1x (extreme) | 1 missing return(s) | Invoice match rate 83%,3,65.87,2,HIGH
+05OEZWM3402H1Z7,1,fake_itc,99.85,7.05,76.82,1,33,ITC ratio 1.6x (high) | 1 missing return(s),2,65.86,2,HIGH
+19WISDX2541E5ZX,1,shell_company,99.88,30.85,48.71,0,40,ITC ratio 67.4x (extreme),1,65.85,2,HIGH
+23OJIDZ9747U7ZA,1,missing_returns,98.01,37.73,35.379999999999995,0,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 78%,3,65.83,2,HIGH
+04LZZMQ2725S5ZV,1,missing_returns,97.84,38.63,39.43,0,47,7 missing returns (critical) | Filing rate 61% (low),2,65.81,2,HIGH
+10ELWUD7241J2ZT,1,sudden_spike,97.11,48.49,26.93,0,53,1 missing return(s) | Sales spike 14.1x (extreme) | Invoice match rate 74% | Sales volatility 1.56 (high),4,65.79,2,HIGH
+07PQIXV3379O9ZV,1,fake_itc,99.86,30.91,43.53,0,48,ITC ratio 3.7x (extreme) | 2 missing return(s),2,65.76,2,HIGH
+36FWHGQ4244N5ZP,1,shell_company,99.65,29.68,44.98,0,48,ITC ratio 70.8x (extreme) | 1 missing return(s),2,65.74,2,HIGH
+24UNUHM6330E5Z0,1,sudden_spike,96.03,38.95,37.68,0,53,3 missing returns (high) | Sales spike 6.1x (high) | Invoice match rate 84% | Sales volatility 1.46 (high),4,65.72,2,HIGH
+04ZPAJN6481I1Z6,1,shell_company,99.67,38.3,31.26,0,56,ITC ratio 80.0x (extreme) | 2 missing return(s) | Invoice match rate 80%,3,65.67,2,HIGH
+27YIWCI7109A2Z4,1,missing_returns,99.23,37.43,37.96,0,47,6 missing returns (critical) | Filing rate 67% (low),2,65.63,2,HIGH
+23DTSLB1545F1ZJ,1,shell_company,99.8,31.27,42.64,0,48,ITC ratio 84.8x (extreme) | 2 missing return(s),2,65.61,2,HIGH
+21OMZRM6335F6Z3,1,missing_returns,99.61,35.55,39.25,0,47,9 missing returns (critical) | Filing rate 50% (low),2,65.61,2,HIGH
+17BXKPB5618P2ZD,1,missing_returns,99.36,36.38,38.67,0,47,9 missing returns (critical) | Filing rate 50% (low),2,65.59,2,HIGH
+29ETCSQ0779T3ZY,1,shell_company,99.76,45.86,28.05,0,48,ITC ratio 73.8x (extreme) | Invoice match rate 83%,2,65.59,2,HIGH
+29NSXMN5493J3ZB,1,shell_company,99.85,26.06,42.93,0,56,ITC ratio 47.1x (extreme) | 2 missing return(s) | Invoice match rate 81%,3,65.59,2,HIGH
+33LOVTY6671F7Z8,1,missing_returns,99.02,35.73,39.71,0,47,6 missing returns (critical) | Filing rate 67% (low),2,65.57,2,HIGH
+04NGNKZ7860M3Z6,1,shell_company,99.63,38.52,40.1,0,40,ITC ratio 116.2x (extreme),1,65.53,2,HIGH
+07QLJNJ1255F8ZR,1,shell_company,99.84,31.01,42.33,0,48,ITC ratio 81.3x (extreme) | 1 missing return(s),2,65.48,2,HIGH
+09NLMOS5175D3ZH,1,shell_company,99.81,31.51,41.89,0,48,ITC ratio 48.1x (extreme) | 1 missing return(s),2,65.48,2,HIGH
+27VGNWI3019X9Z0,1,shell_company,99.52,37.36,36.23,0,48,ITC ratio 116.3x (extreme) | 2 missing return(s),2,65.43,2,HIGH
+21EDNNL3879C9Z7,1,fake_itc,99.77,15.36,66.85,1,33,ITC ratio 2.2x (high) | Invoice match rate 82%,2,65.42,2,HIGH
+01BWKAR1009X3Z8,1,shell_company,99.75,37.26,35.82,0,48,ITC ratio 95.0x (extreme) | 1 missing return(s),2,65.38,2,HIGH
+13QITXE3970F4Z1,1,missing_returns,97.21,39.89,41.45,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 79%,3,65.36,2,HIGH
+24JFGPA3469C1ZH,1,fake_itc,99.72,8.5,78.34,1,25,ITC ratio 2.8x (high),1,65.36,2,HIGH
+33BADFH3302U8Z6,1,fake_itc,99.87,14.62,67.15,1,33,ITC ratio 2.8x (high) | Invoice match rate 85%,2,65.35,2,HIGH
+06HYXAC3422S9Z6,1,shell_company,99.51,41.25,31.98,0,48,ITC ratio 80.1x (extreme) | 2 missing return(s),2,65.34,2,HIGH
+04RNUSV0627N6ZT,1,shell_company,99.38,28.29,45.010000000000005,0,48,ITC ratio 58.9x (extreme) | 2 missing return(s),2,65.31,2,HIGH
+16NRFJL7264H4ZD,1,sudden_spike,96.34,47.53,56.38,1,37,Sales spike 13.7x (extreme) | Sales volatility 1.69 (high),2,65.25,1,HIGH
+05XRFNQ4783T3ZO,1,missing_returns,97.85,34.85,40.94,0,47,6 missing returns (critical) | Filing rate 67% (low),2,65.24,2,HIGH
+02JYAYS5126E9Z3,1,shell_company,98.38,32.65,41.620000000000005,0,48,ITC ratio 124.1x (extreme) | 1 missing return(s),2,65.2,2,HIGH
+32LSENP0346Z4ZW,1,fake_itc,99.88,5.45,80.49,1,25,ITC ratio 2.4x (high),1,65.19,2,HIGH
+10BOQXY9368R6ZW,1,shell_company,99.67,34.97,42.21,0,40,ITC ratio 88.7x (extreme),1,65.18,2,HIGH
+36MDTXV1679P1ZD,1,missing_returns,99.25,30.14,43.39,0,47,6 missing returns (critical) | Filing rate 67% (low),2,65.17,2,HIGH
+15HNQPA9985T5ZT,1,shell_company,99.73,27.9,44.18,0,48,ITC ratio 64.8x (extreme) | 1 missing return(s),2,65.13,2,HIGH
+10WRQIZ8344A4ZA,1,missing_returns,99.62,36.89,35.91,0,47,6 missing returns (critical) | Filing rate 67% (low),2,65.12,2,HIGH
+27EUFJL0264W8ZH,1,sudden_spike,98.42,36.76,38.89,0,45,1 missing return(s) | Sales spike 14.5x (extreme) | Sales volatility 1.69 (high),3,65.11,2,HIGH
+18ILVGP7717B8Z4,1,shell_company,99.86,32.64,39.19,0,48,ITC ratio 65.0x (extreme) | 2 missing return(s),2,65.11,2,HIGH
+06RYXWB1742S3ZG,1,shell_company,97.61,43.58,19.3,0,68,ITC ratio 64.0x (extreme) | 3 missing returns (high) | Invoice match rate 84%,3,65.08,2,HIGH
+11TRDFF9309M3ZC,1,missing_returns,98.31,35.02,39.43,0,47,7 missing returns (critical) | Filing rate 61% (low),2,65.07,2,HIGH
+29KOBIJ7282Q1Z3,1,missing_returns,99.17,34.52,38.73,0,47,7 missing returns (critical) | Filing rate 61% (low),2,65.07,2,HIGH
+15ZBLWW5477V8ZW,1,missing_returns,99.49,27.44,40.47,0,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 84%,3,65.05,2,HIGH
+15GGKVB0864O1ZR,1,missing_returns,97.8,38.61,36.41,0,47,9 missing returns (critical) | Filing rate 50% (low),2,65.03,2,HIGH
+23AZJBQ7565A5ZK,1,shell_company,99.54,28.67,43.260000000000005,0,48,ITC ratio 69.4x (extreme) | Invoice match rate 83%,2,65.02,2,HIGH
+02CHTTW7545Q9ZG,1,shell_company,98.37,41.17,36.93,0,40,ITC ratio 74.0x (extreme),1,64.95,2,HIGH
+21VDQXE6565B5ZZ,1,sudden_spike,98.58,37.35,37.36,0,45,Sales spike 10.5x (extreme) | Invoice match rate 83% | Sales volatility 1.48 (high),3,64.93,2,HIGH
+14OIQHE1495S8Z4,1,shell_company,99.09,29.61,37.79,0,56,ITC ratio 63.0x (extreme) | 2 missing return(s) | Invoice match rate 70%,3,64.93,2,HIGH
+24YMLMG4743L5ZV,1,missing_returns,98.77,32.4,40.72,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.9,2,HIGH
+09RJWER6659J8ZY,1,missing_returns,98.0,38.08,36.06,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.88,2,HIGH
+16BDUQY2604V5ZN,1,fake_itc,99.79,34.3,38.43,0,45,ITC ratio 1.7x (high) | 3 missing returns (high),2,64.86,2,HIGH
+24YLVGD7650B4ZK,1,missing_returns,97.82,39.27,30.04,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 79%,3,64.81,2,HIGH
+19IXZHF5455O6Z7,1,shell_company,99.35,31.53,39.81,0,48,ITC ratio 111.1x (extreme) | 2 missing return(s),2,64.81,2,HIGH
+11ZCASL9208V3Z5,1,shell_company,99.8,27.02,38.81,0,56,ITC ratio 103.1x (extreme) | 1 missing return(s) | Invoice match rate 79%,3,64.79,2,HIGH
+04KFHTP1608L8ZU,1,shell_company,99.76,29.77,45.69,0,40,ITC ratio 114.3x (extreme),1,64.78,2,HIGH
+17MRFTB8568S9ZV,1,missing_returns,99.1,34.85,37.3,0,47,8 missing returns (critical) | Filing rate 56% (low),2,64.77,2,HIGH
+17KVIUX0842Q5ZN,1,shell_company,99.73,23.55,42.19,0,56,ITC ratio 104.3x (extreme) | 1 missing return(s) | Invoice match rate 82%,3,64.74,2,HIGH
+29KVTJS5641E5ZH,1,missing_returns,99.64,30.06,41.08,0,47,7 missing returns (critical) | Filing rate 61% (low),2,64.71,2,HIGH
+33AEJLM8318G6ZK,1,missing_returns,99.27,28.55,43.120000000000005,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.71,2,HIGH
+04JGDSC9742F3ZP,1,missing_returns,97.98,36.54,36.72,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.66,2,HIGH
+36KSXEQ4583B2ZO,1,shell_company,99.35,49.36,21.36,0,48,ITC ratio 104.9x (extreme) | 2 missing return(s),2,64.65,2,HIGH
+16YJARR3561M7ZG,1,shell_company,99.82,28.8,41.2,0,48,ITC ratio 89.2x (extreme) | 1 missing return(s),2,64.64,2,HIGH
+37VQYNV1317L7ZZ,1,missing_returns,97.68,39.91,33.64,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.63,2,HIGH
+23NJJEZ2991M1Z1,1,shell_company,99.89,32.65,41.95,0,40,ITC ratio 71.8x (extreme),1,64.61,2,HIGH
+11WVCWG4630K3Z5,1,missing_returns,98.39,43.73,23.77,0,55,8 missing returns (critical) | Filing rate 56% (low) | Invoice match rate 79%,3,64.56,2,HIGH
+24XGCXT3555T5ZB,1,sudden_spike,99.32,59.94,36.83,0,37,Sales spike 11.6x (extreme) | Sales volatility 1.53 (high),2,64.5,1,HIGH
+13HUFZT5841H6ZM,1,missing_returns,99.14,29.08,41.81,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.47,2,HIGH
+33ZWNAM5058F1ZI,1,sudden_spike,97.05,48.43,21.61,0,53,2 missing return(s) | Sales spike 12.6x (extreme) | Invoice match rate 84% | Sales volatility 1.47 (high),4,64.43,2,HIGH
+11GFFDT2532Z2ZK,1,shell_company,99.85,34.06,39.83,0,40,ITC ratio 91.9x (extreme),1,64.42,2,HIGH
+27QMRHD7409X6ZR,1,shell_company,99.4,31.28,43.16,0,40,ITC ratio 63.2x (extreme),1,64.4,2,HIGH
+06GDYGJ9527K8ZF,1,fake_itc,98.99,9.01,70.21,1,33,ITC ratio 1.5x (high) | 1 missing return(s),2,64.4,2,HIGH
+07ZUDJX9912A9ZV,1,shell_company,99.86,22.61,46.35,0,48,ITC ratio 64.0x (extreme) | 2 missing return(s),2,64.39,2,HIGH
+14PXFUE4673S5Z2,1,missing_returns,99.25,29.81,40.46,0,47,7 missing returns (critical) | Filing rate 61% (low),2,64.35,2,HIGH
+16DRTWL2139Q6ZL,1,sudden_spike,99.57,55.06,40.72,0,37,Sales spike 11.6x (extreme) | Sales volatility 1.51 (high),2,64.34,1,HIGH
+05ZNSAS4347Y1ZP,1,shell_company,99.76,33.91,39.79,0,40,ITC ratio 118.6x (extreme),1,64.34,2,HIGH
+27WFYYF8825M3ZG,1,shell_company,98.9,27.53,42.4,0,48,ITC ratio 99.6x (extreme) | 1 missing return(s),2,64.3,2,HIGH
+09QTTAE2130Q1ZV,1,missing_returns,99.41,29.39,40.34,0,47,6 missing returns (critical) | Filing rate 67% (low),2,64.28,2,HIGH
+24SXHYB2878D3ZM,1,shell_company,99.75,35.7,32.86,0,48,ITC ratio 98.2x (extreme) | 2 missing return(s),2,64.25,2,HIGH
+09IXCDR0601Z6Z7,1,sudden_spike,98.51,48.75,23.35,0,45,1 missing return(s) | Sales spike 16.3x (extreme) | Sales volatility 1.73 (high),3,64.25,2,HIGH
+17WLFOS2396O9Z2,1,shell_company,99.9,40.82,22.64,0,56,ITC ratio 93.1x (extreme) | 1 missing return(s) | Invoice match rate 83%,3,64.23,2,HIGH
+32ANRRQ7976O9ZT,1,missing_returns,98.96,36.14,34.010000000000005,0,47,7 missing returns (critical) | Filing rate 61% (low),2,64.22,2,HIGH
+13LTKWJ6709M7Z2,1,sudden_spike,98.54,48.16,23.71,0,45,2 missing return(s) | Sales spike 12.6x (extreme) | Sales volatility 1.83 (high),3,64.21,2,HIGH
+29CPPKB9471A7ZE,1,shell_company,99.66,30.22,38.260000000000005,0,48,ITC ratio 53.0x (extreme) | 2 missing return(s),2,64.2,2,HIGH
+33QGPVU5563V7ZL,1,shell_company,99.83,28.1,44.8,0,40,ITC ratio 64.2x (extreme),1,64.17,2,HIGH
+19LVZMK3114P5ZZ,1,sudden_spike,96.05,49.89,25.22,0,45,1 missing return(s) | Sales spike 11.2x (extreme) | Sales volatility 1.61 (high),3,64.15,2,HIGH
+09YVIDR6209C7ZJ,1,shell_company,99.8,22.96,39.82,0,56,ITC ratio 108.0x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,64.03,2,HIGH
+21KIEIC9020P5ZF,1,shell_company,99.06,28.61,40.03,0,48,ITC ratio 68.3x (extreme) | 1 missing return(s),2,64.03,2,HIGH
+08OXKVI4498O7ZX,1,missing_returns,97.19,33.43,42.620000000000005,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 82%,3,64.03,2,HIGH
+21WYBJU6249L8ZP,1,shell_company,99.8,42.87,24.52,0,48,ITC ratio 106.0x (extreme) | 1 missing return(s),2,63.98,2,HIGH
+01MHSWT0478M3ZX,1,fake_itc,99.63,37.86,24.72,0,56,ITC ratio 3.6x (extreme) | 2 missing return(s) | Invoice match rate 82%,3,63.92,2,HIGH
+17NRWPY0413N7ZP,1,sudden_spike,98.55,51.86,43.6,0,37,Sales spike 15.2x (extreme) | Sales volatility 1.65 (high),2,63.91,1,HIGH
+11BFFQA9269A4ZV,1,fake_itc,99.84,9.14,66.66,1,33,ITC ratio 2.1x (high) | 1 missing return(s),2,63.84,2,HIGH
+20QHRHU0915Q3ZY,1,fake_itc,99.85,33.38,33.34,0,48,ITC ratio 3.0x (extreme) | 2 missing return(s),2,63.83,2,HIGH
+11PRNJQ5401G7ZB,1,shell_company,99.72,39.32,22.79,0,56,ITC ratio 94.3x (extreme) | 1 missing return(s) | Invoice match rate 80%,3,63.83,2,HIGH
+32TMYAX2954A4ZY,1,missing_returns,98.76,39.45,24.39,0,55,7 missing returns (critical) | Filing rate 61% (low) | Invoice match rate 81%,3,63.78,2,HIGH
+18ZTIEI1849H2ZV,1,missing_returns,98.61,31.19,37.56,0,47,6 missing returns (critical) | Filing rate 67% (low),2,63.75,2,HIGH
+36TZFSK0418V8ZC,1,shell_company,99.71,29.58,41.75,0,40,ITC ratio 103.4x (extreme),1,63.73,2,HIGH
+19ERCVZ4547K2Z3,1,missing_returns,96.39,45.07,21.79,0,55,8 missing returns (critical) | Filing rate 56% (low) | Invoice match rate 81%,3,63.7,2,HIGH
+36CFEPF9740E8ZI,1,shell_company,98.8,26.77,40.89,0,48,ITC ratio 52.4x (extreme) | Invoice match rate 76%,2,63.7,2,HIGH
+21LTIYS5266L4Z7,1,missing_returns,99.42,46.61,20.72,0,47,8 missing returns (critical) | Filing rate 56% (low),2,63.68,2,HIGH
+23GZFTZ6696H6Z1,1,missing_returns,99.65,37.36,29.67,0,47,6 missing returns (critical) | Filing rate 67% (low),2,63.68,2,HIGH
+05XSUVL8044U4ZD,1,shell_company,99.65,24.49,41.870000000000005,0,48,ITC ratio 81.8x (extreme) | 1 missing return(s),2,63.67,2,HIGH
+10WAGWC8182X6Z1,1,sudden_spike,99.58,47.83,45.18,0,37,Sales spike 16.9x (extreme) | Sales volatility 1.88 (high),2,63.66,1,HIGH
+08IETQN6962C1Z1,1,shell_company,99.38,27.29,39.38,0,48,ITC ratio 97.7x (extreme) | 1 missing return(s),2,63.65,2,HIGH
+36IDROH4887C5ZV,1,shell_company,99.48,41.09,25.25,0,48,ITC ratio 87.2x (extreme) | 1 missing return(s),2,63.6,2,HIGH
+02CBPEQ0825R1Z7,1,missing_returns,97.66,30.66,38.7,0,47,6 missing returns (critical) | Filing rate 67% (low),2,63.57,2,HIGH
+22EELMC4449C6Z0,1,shell_company,99.85,32.65,37.85,0,40,ITC ratio 112.5x (extreme),1,63.57,2,HIGH
+14FXOAI6242T5Z9,1,fake_itc,99.82,25.17,45.35,0,40,ITC ratio 3.8x (extreme),1,63.57,2,HIGH
+29AIFFW5213K7Z9,1,sudden_spike,97.79,41.69,23.84,0,53,2 missing return(s) | Sales spike 10.5x (extreme) | Invoice match rate 81% | Sales volatility 1.47 (high),4,63.56,2,HIGH
+09FDRBD8413J3ZK,1,shell_company,99.85,23.92,46.4,0,40,ITC ratio 75.6x (extreme),1,63.53,2,HIGH
+14DYTOF6616T9ZP,1,shell_company,99.69,34.42,35.86,0,40,ITC ratio 93.1x (extreme),1,63.46,2,HIGH
+22SVNSJ7706S9Z1,1,fake_itc,99.87,56.84,37.370000000000005,0,33,ITC ratio 2.6x (high) | 1 missing return(s),2,63.46,1,HIGH
+27PUURE6752O9ZL,1,missing_returns,98.84,37.67,24.75,0,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 80%,3,63.45,2,HIGH
+16LHQIS1814U5ZL,1,shell_company,99.69,34.67,23.49,0,60,ITC ratio 115.0x (extreme) | 3 missing returns (high),2,63.43,2,HIGH
+32RMOJU3210Q3Z0,1,fake_itc,99.81,24.39,45.510000000000005,0,40,ITC ratio 3.5x (extreme),1,63.41,2,HIGH
+07OTOQZ6639Q1ZQ,1,sudden_spike,98.1,41.86,27.35,0,45,1 missing return(s) | Sales spike 11.0x (extreme) | Sales volatility 1.45 (high),3,63.39,2,HIGH
+21NEPED7387I7ZF,1,fake_itc,99.78,7.51,71.11,1,25,ITC ratio 2.1x (high),1,63.33,2,HIGH
+08RGDVT2189X4ZA,1,sudden_spike,99.73,53.37,40.48,0,33,1 missing return(s) | Sales spike 8.5x (high) | Sales volatility 1.74 (high),3,63.32,1,HIGH
+33UVMSA2257P4ZD,1,shell_company,99.29,42.12,23.25,0,48,ITC ratio 100.0x (extreme) | 2 missing return(s),2,63.29,2,HIGH
+10KJNVR4585V1ZN,1,circular_trading,78.26,80.31,33.57,0,16,1 missing return(s) | Invoice match rate 82%,2,63.26,2,HIGH
+15PLDXK6300S1ZD,1,missing_returns,99.5,40.48,24.98,0,47,6 missing returns (critical) | Filing rate 67% (low),2,63.24,2,HIGH
+29EMLNI3246A7ZC,1,fake_itc,99.77,23.18,41.23,0,48,ITC ratio 3.3x (extreme) | 1 missing return(s),2,63.22,2,HIGH
+08PNHUV0146B2ZP,1,shell_company,99.71,23.68,40.79,0,48,ITC ratio 89.1x (extreme) | Invoice match rate 80%,2,63.22,2,HIGH
+01FRUHA5521B6ZP,1,shell_company,99.77,32.16,36.86,0,40,ITC ratio 115.9x (extreme),1,63.17,2,HIGH
+01BNOMJ7435A6ZG,1,sudden_spike,98.01,53.03,40.24,0,37,Sales spike 13.2x (extreme) | Sales volatility 1.56 (high),2,63.17,1,HIGH
+01ZPBIO1395I4Z9,1,circular_trading,71.55,44.86,75.50999999999999,1,20,Invoice match rate 56% (low),1,63.14,2,HIGH
+32PYGJM7229D7ZA,1,shell_company,99.31,41.4,23.28,0,48,ITC ratio 113.9x (extreme) | Invoice match rate 81%,2,63.13,2,HIGH
+06IQAEA6489J4ZI,1,shell_company,99.84,26.95,36.78,0,48,ITC ratio 92.3x (extreme) | 1 missing return(s),2,63.08,2,HIGH
+17UHMVQ1959C7Z4,1,fake_itc,99.35,10.31,63.1,1,33,ITC ratio 1.8x (high) | 1 missing return(s),2,63.07,2,HIGH
+33BMFXJ8826M6ZR,1,shell_company,99.74,27.09,36.56,0,48,ITC ratio 48.0x (extreme) | 2 missing return(s),2,63.02,2,HIGH
+21AHPVM1943I6Z1,1,fake_itc,99.79,14.34,63.01,1,25,ITC ratio 2.8x (high),1,63.01,2,HIGH
+12DQLQA8741N8ZN,1,missing_returns,96.52,41.3,27.18,0,47,7 missing returns (critical) | Filing rate 61% (low),2,62.95,2,HIGH
+09JWMUS7323B4ZJ,1,shell_company,99.83,23.62,39.56,0,48,ITC ratio 86.9x (extreme) | 1 missing return(s),2,62.94,2,HIGH
+23OJOZL6840N9Z5,1,missing_returns,98.48,37.07,23.75,0,55,6 missing returns (critical) | Filing rate 67% (low) | Invoice match rate 83%,3,62.92,2,HIGH
+16KCDVV4711V4ZI,1,sudden_spike,98.87,38.22,27.99,0,45,Sales spike 14.6x (extreme) | Invoice match rate 83% | Sales volatility 1.65 (high),3,62.91,2,HIGH
+20PJHGB4719O1ZR,1,missing_returns,98.83,41.23,23.79,0,47,8 missing returns (critical) | Filing rate 56% (low),2,62.9,2,HIGH
+06GQIVH3832Q6Z6,1,sudden_spike,98.87,49.34,41.58,0,37,Sales spike 16.0x (extreme) | Sales volatility 1.72 (high),2,62.88,1,HIGH
+07KUXWT0123V8Z7,1,fake_itc,99.87,52.93,38.9,0,33,ITC ratio 2.0x (high) | 1 missing return(s),2,62.86,1,HIGH
+12BGUXY1687V6Z3,1,missing_returns,97.15,44.92,22.29,0,47,6 missing returns (critical) | Filing rate 67% (low),2,62.85,2,HIGH
+20YFIZZ2645H6ZY,1,shell_company,99.59,29.3,38.61,0,40,ITC ratio 98.6x (extreme),1,62.83,2,HIGH
+08QLTIY8026J5Z2,1,shell_company,99.59,26.04,36.93,0,48,ITC ratio 99.9x (extreme) | 1 missing return(s),2,62.8,2,HIGH
+03VLIDW8083H4ZE,1,fake_itc,99.89,20.89,41.54,0,48,ITC ratio 3.2x (extreme) | 1 missing return(s),2,62.77,2,HIGH
+37MLMJR3499B7ZS,1,shell_company,99.8,29.56,37.67,0,40,ITC ratio 111.1x (extreme),1,62.74,2,HIGH
+04TYEUM1875K7ZM,1,fake_itc,99.74,25.07,37.39,0,48,ITC ratio 3.2x (extreme) | 1 missing return(s),2,62.72,2,HIGH
+29PWIRZ0102W1ZV,1,shell_company,99.59,22.18,40.45,0,48,ITC ratio 47.5x (extreme) | 1 missing return(s),2,62.71,2,HIGH
+33ATKGE1208O7Z7,1,fake_itc,99.76,21.92,45.27,0,40,ITC ratio 3.3x (extreme),1,62.71,2,HIGH
+32GMIWY7630V2ZO,1,shell_company,99.47,22.65,40.14,0,48,ITC ratio 75.6x (extreme) | 1 missing return(s),2,62.71,2,HIGH
+01VVXBZ1897Y7ZI,1,fake_itc,99.73,17.79,39.68,0,56,ITC ratio 3.3x (extreme) | 1 missing return(s) | Invoice match rate 78%,3,62.67,2,HIGH
+17BBSUN1819K3ZZ,1,shell_company,99.57,20.76,41.74,0,48,ITC ratio 59.0x (extreme) | Invoice match rate 84%,2,62.67,2,HIGH
+23VLTCT8044I3Z6,1,shell_company,99.64,21.37,45.71,0,40,ITC ratio 65.7x (extreme),1,62.64,2,HIGH
+01FSHGD6944Y8ZX,1,fake_itc,99.81,24.71,42.1,0,40,ITC ratio 3.3x (extreme),1,62.64,2,HIGH
+12ZVSEZ0121H8ZF,1,missing_returns,98.43,23.78,44.89,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 79%,3,62.62,2,HIGH
+04FJCVG8283Y6ZX,1,shell_company,99.54,27.97,39.02,0,40,ITC ratio 94.0x (extreme),1,62.59,2,HIGH
+36HWKVJ7854G1ZE,1,shell_company,99.82,24.28,37.510000000000005,0,48,ITC ratio 78.8x (extreme) | 1 missing return(s),2,62.58,2,HIGH
+23XZNSD8218J6ZO,1,fake_itc,99.85,20.05,36.86,0,56,ITC ratio 3.5x (extreme) | 2 missing return(s) | Invoice match rate 81%,3,62.57,2,HIGH
+01TNJUY4794R7ZM,1,sudden_spike,98.35,48.61,41.69,0,37,Sales spike 13.8x (extreme) | Sales volatility 1.65 (high),2,62.55,1,HIGH
+17MOYCR1997B6Z9,1,shell_company,99.16,23.76,38.79,0,48,ITC ratio 48.9x (extreme) | 2 missing return(s),2,62.54,2,HIGH
+07FDMFD5621W8ZU,1,fake_itc,99.88,29.44,36.82,0,40,ITC ratio 3.6x (extreme),1,62.52,2,HIGH
+08XJJNR8151A7Z4,1,fake_itc,99.57,7.48,63.04,1,33,ITC ratio 2.3x (high) | 1 missing return(s),2,62.43,2,HIGH
+18KKFPO1857F9Z5,1,shell_company,99.6,30.01,26.6,0,56,ITC ratio 103.3x (extreme) | 1 missing return(s) | Invoice match rate 82%,3,62.41,2,HIGH
+11ZWWTA6549D5ZB,1,fake_itc,99.06,6.48,69.47,1,25,ITC ratio 1.9x (high),1,62.41,2,HIGH
+22TMBOG9188F1ZG,1,missing_returns,97.83,41.63,22.76,0,47,8 missing returns (critical) | Filing rate 56% (low),2,62.39,2,HIGH
+18OCFTS2981F4ZQ,1,shell_company,99.78,31.62,34.010000000000005,0,40,ITC ratio 121.0x (extreme),1,62.33,2,HIGH
+11RLILX5188B6Z0,1,shell_company,99.23,37.15,29.25,0,40,ITC ratio 72.1x (extreme),1,62.33,2,HIGH
+20AGSSA9068N9ZQ,1,shell_company,99.71,18.83,41.99,0,48,ITC ratio 63.5x (extreme) | 1 missing return(s),2,62.3,2,HIGH
+27ORRIN0369E2ZO,1,shell_company,99.45,19.38,36.38,0,56,ITC ratio 64.2x (extreme) | 1 missing return(s) | Invoice match rate 81%,3,62.15,2,HIGH
+21PKLHB0391U3Z3,1,shell_company,99.67,23.91,36.3,0,48,ITC ratio 95.1x (extreme) | 1 missing return(s),2,62.14,2,HIGH
+22CVKOP9838J5ZT,1,fake_itc,99.85,27.74,32.13,0,48,ITC ratio 3.1x (extreme) | Invoice match rate 76%,2,62.11,2,HIGH
+32VTGTI0688W3ZD,1,shell_company,99.64,41.57,23.13,0,40,ITC ratio 85.8x (extreme),1,62.05,2,HIGH
+37ECHDS4924W7ZH,1,shell_company,99.3,22.92,37.47,0,48,ITC ratio 81.0x (extreme) | 1 missing return(s),2,62.05,2,HIGH
+24SXVYX2622J8ZI,1,circular_trading,77.66,29.34,85.34,1,8,2 missing return(s),1,62.05,2,HIGH
+19MRIIZ5384R1ZN,1,shell_company,99.65,35.59,28.99,0,40,ITC ratio 104.1x (extreme),1,62.02,2,HIGH
+07XCXJZ3229T6Z0,1,shell_company,99.69,13.88,41.02,0,56,ITC ratio 52.5x (extreme) | 1 missing return(s) | Invoice match rate 83%,3,62.02,2,HIGH
+20XUUBJ1161E8Z1,1,shell_company,99.68,34.24,25.41,0,48,ITC ratio 85.9x (extreme) | 2 missing return(s),2,62.0,2,HIGH
+21JTPKY7803N4Z8,1,shell_company,99.59,32.13,22.69,0,56,ITC ratio 110.0x (extreme) | 1 missing return(s) | Invoice match rate 80%,3,61.96,2,HIGH
+09TAWLN5233R6ZN,1,shell_company,99.53,21.88,37.7,0,48,ITC ratio 49.2x (extreme) | 1 missing return(s),2,61.93,2,HIGH
+11SFRHK4916X4ZI,1,sudden_spike,99.24,46.4,40.16,0,37,Sales spike 13.6x (extreme) | Sales volatility 1.73 (high),2,61.92,1,HIGH
+17XTNGV9951V1ZA,1,shell_company,99.84,28.1,30.96,0,48,ITC ratio 102.0x (extreme) | 1 missing return(s),2,61.91,2,HIGH
+37DTOMP7479S7ZN,1,fake_itc,99.87,14.2,44.760000000000005,0,48,ITC ratio 3.3x (extreme) | 2 missing return(s),2,61.89,2,HIGH
+08XAIAL9538J4ZK,1,fake_itc,99.86,21.23,37.63,0,48,ITC ratio 3.4x (extreme) | 2 missing return(s),2,61.87,2,HIGH
+21AHCJA0221W9Z3,1,shell_company,99.85,17.84,41.02,0,48,ITC ratio 51.9x (extreme) | 1 missing return(s),2,61.86,2,HIGH
+33AJXBA0350V9ZS,1,fake_itc,99.71,19.97,38.96,0,48,ITC ratio 3.5x (extreme) | 1 missing return(s),2,61.83,2,HIGH
+18LBYUD4904Y4ZV,1,shell_company,99.87,25.3,38.2,0,40,ITC ratio 105.2x (extreme),1,61.83,2,HIGH
+24RAUHQ5516A8ZX,1,missing_returns,98.81,33.94,26.73,0,47,6 missing returns (critical) | Filing rate 67% (low),2,61.8,2,HIGH
+37IXTFO6427N1ZL,1,fake_itc,99.86,6.96,46.81,0,56,ITC ratio 3.7x (extreme) | 1 missing return(s) | Invoice match rate 84%,3,61.79,2,HIGH
+12UXAND8498V8ZR,1,shell_company,99.7,31.94,31.55,0,40,ITC ratio 104.2x (extreme),1,61.77,2,HIGH
+12ASRBE4618K8ZW,1,missing_returns,98.29,38.81,22.45,0,47,6 missing returns (critical) | Filing rate 67% (low),2,61.77,2,HIGH
+14BJPNE0809D8Z3,1,shell_company,99.41,28.4,30.64,0,48,ITC ratio 63.9x (extreme) | Invoice match rate 84%,2,61.75,2,HIGH
+13HNIKY9541D9ZQ,1,shell_company,99.83,24.43,38.64,0,40,ITC ratio 110.6x (extreme),1,61.71,2,HIGH
+07TIBCC3558B7ZW,1,shell_company,99.47,22.08,36.58,0,48,ITC ratio 51.0x (extreme) | 1 missing return(s),2,61.68,2,HIGH
+15DKUSE3520V4ZZ,1,shell_company,99.69,20.51,37.78,0,48,ITC ratio 55.1x (extreme) | 1 missing return(s),2,61.66,2,HIGH
+15RTFVH5217H4ZD,1,missing_returns,99.42,24.24,39.15,0,40,5 missing returns (high) | Filing rate 72% (low) | Invoice match rate 82%,3,61.64,2,HIGH
+09RWHKA8853V3ZJ,1,circular_trading,86.38,30.84,74.71000000000001,1,0,No flags,0,61.62,2,HIGH
+24RPPNU8221B7Z5,1,shell_company,99.55,33.58,24.56,0,48,ITC ratio 115.0x (extreme) | 1 missing return(s),2,61.58,2,HIGH
+14ZVUDG6851Q2ZS,1,missing_returns,98.87,34.63,25.05,0,47,7 missing returns (critical) | Filing rate 61% (low),2,61.57,2,HIGH
+08ATMZP3442V8ZH,1,fake_itc,99.81,15.5,39.23,0,53,ITC ratio 3.0x (high) | 3 missing returns (high) | Invoice match rate 79%,3,61.57,2,HIGH
+11SLWMJ0478I9ZC,1,fake_itc,99.95,20.29,42.03,0,40,ITC ratio 3.6x (extreme),1,61.56,2,HIGH
+33MJFXE9172A9ZN,1,shell_company,99.65,32.01,21.01,0,56,ITC ratio 96.0x (extreme) | 2 missing return(s) | Invoice match rate 80%,3,61.53,2,HIGH
+29FDRXX4976S3ZU,1,fake_itc,99.94,9.34,47.79,0,48,ITC ratio 3.0x (extreme) | 1 missing return(s),2,61.46,2,HIGH
+33SPFGY5461X4ZW,1,fake_itc,99.8,9.93,47.29,0,48,ITC ratio 3.4x (extreme) | 1 missing return(s),2,61.44,2,HIGH
+02VQUIM3470W2ZH,1,fake_itc,99.76,18.92,42.45,0,41,ITC ratio 2.2x (high) | 1 missing return(s) | Invoice match rate 79%,3,61.41,2,HIGH
+17UEHZH9091M8Z8,1,fake_itc,99.89,19.05,42.67,0,40,ITC ratio 3.3x (extreme),1,61.39,2,HIGH
+23IFOAF3644G6ZC,1,shell_company,98.68,25.24,38.02,0,40,ITC ratio 72.2x (extreme),1,61.35,2,HIGH
+20TJHER2493R2ZN,1,shell_company,99.52,21.61,35.57,0,48,ITC ratio 67.9x (extreme) | 1 missing return(s),2,61.33,2,HIGH
+06MEJYV1961C1ZJ,1,shell_company,99.57,19.17,37.77,0,48,ITC ratio 58.0x (extreme) | Invoice match rate 82%,2,61.28,2,HIGH
+14DXNDY0492X2ZF,1,sudden_spike,99.27,41.38,42.55,0,37,Sales spike 14.5x (extreme) | Sales volatility 1.76 (high),2,61.28,1,HIGH
+29MDHHU0904V9ZL,1,shell_company,99.7,33.7,22.97,0,48,ITC ratio 107.2x (extreme) | 2 missing return(s),2,61.26,2,HIGH
+06GSTQD5494X3ZQ,1,shell_company,99.29,31.51,25.51,0,48,ITC ratio 119.5x (extreme) | 1 missing return(s),2,61.21,2,HIGH
+21VCNSI6341X5ZF,1,sudden_spike,99.62,45.56,39.72,0,33,1 missing return(s) | Sales spike 9.2x (high) | Sales volatility 1.71 (high),3,61.14,1,HIGH
+01ULDJH3301N3ZF,1,sudden_spike,97.47,49.51,43.52,0,25,Sales spike 9.9x (high) | Sales volatility 1.44 (high),2,61.12,1,HIGH
+06BMFRZ7855Q1ZV,1,shell_company,99.31,34.38,22.27,0,48,ITC ratio 82.9x (extreme) | 2 missing return(s),2,61.12,2,HIGH
+33ZLSLK1640M1Z4,1,shell_company,99.75,37.45,23.16,0,40,ITC ratio 121.1x (extreme),1,61.06,2,HIGH
+05RTSAR3584H8Z5,1,shell_company,99.89,24.66,26.01,0,56,ITC ratio 67.1x (extreme) | 2 missing return(s) | Invoice match rate 84%,3,61.03,2,HIGH
+01TFMGO8866N8Z2,1,circular_trading,71.38,27.97,79.39,1,28,3 missing returns (high) | Invoice match rate 84%,2,61.02,2,HIGH
+22IPXVL2854M6ZQ,1,missing_returns,98.91,35.78,21.58,0,47,6 missing returns (critical) | Filing rate 67% (low),2,61.01,2,HIGH
