@@ -1,0 +1,29 @@
+# Environment variables (NEVER push these)
+.env
+*.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.json
+!src/models/saved/model_metrics.json
+!src/models/saved/ensemble_metrics.json
+!src/models/saved/anomaly_metrics.json
+
+# Large data files
+data/synthetic/invoices.csv
+data/synthetic/gstr3b_filings.csv
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
