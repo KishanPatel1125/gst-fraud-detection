@@ -4,10 +4,15 @@ FastAPI Backend — Phase 4 (Updated with PostgreSQL)
 All data now reads from Supabase PostgreSQL database
 """
 
+from fastapi import Form
+from fastapi.responses import StreamingResponse
+from auth import authenticate_user, create_access_token, get_current_active_user, Token
+from pdf_generator import generate_gstin_report
 from fastapi import FastAPI, HTTPException, UploadFile, File, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
+import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy import desc, func
 import pandas as pd
@@ -15,6 +20,7 @@ import numpy as np
 import pickle
 import json
 import os
+import io
 import sys
 import warnings
 warnings.filterwarnings("ignore")
@@ -459,3 +465,236 @@ def root():
         "database":    "Supabase PostgreSQL (South Asia - Mumbai)",
         "version":     "2.0.0",
     }
+"""
+ADD THESE TO YOUR api/main.py
+New endpoints for Authentication + PDF Reports
+"""
+
+# ── ADD THESE IMPORTS at the top of main.py ──
+from fastapi import Form
+from fastapi.responses import StreamingResponse
+import io
+
+# ── Auth endpoints ──────────────────────────
+
+from auth import (
+    authenticate_user, create_access_token,
+    get_current_active_user, require_role, Token
+)
+
+@app.post("/api/auth/login", response_model=Token, tags=["Auth"])
+async def login(
+    username: str = Form(...),
+    password: str = Form(...),
+):
+    """
+    Login with username and password.
+    Returns JWT token valid for 8 hours.
+
+    Default accounts:
+    - admin / secret
+    - officer / secret
+    - ca / secret
+    """
+    user = authenticate_user(username, password)
+    if not user:
+        raise HTTPException(
+            status_code = 401,
+            detail      = "Incorrect username or password",
+            headers     = {"WWW-Authenticate": "Bearer"},
+        )
+    token = create_access_token(data={"sub": user["username"]})
+    return {
+        "access_token": token,
+        "token_type":   "bearer",
+        "user": {
+            "username":  user["username"],
+            "full_name": user["full_name"],
+            "email":     user["email"],
+            "role":      user["role"],
+        }
+    }
+
+
+@app.get("/api/auth/me", tags=["Auth"])
+async def get_me(current_user=Depends(get_current_active_user)):
+    """Get current logged-in user details"""
+    return {
+        "username":  current_user["username"],
+        "full_name": current_user["full_name"],
+        "email":     current_user["email"],
+        "role":      current_user["role"],
+    }
+
+
+@app.post("/api/auth/logout", tags=["Auth"])
+async def logout():
+    """Logout — client should delete the token"""
+    return {"message": "Logged out successfully"}
+
+
+# ── PDF Report endpoints ─────────────────────
+
+from pdf_generator import generate_gstin_report
+
+@app.get("/api/report/{gstin_id}", tags=["Reports"])
+async def download_gstin_report(
+    gstin_id: str,
+    db: Session = Depends(get_db),
+):
+    """
+    Download a PDF investigation report for a GSTIN.
+    Returns a downloadable PDF file.
+    """
+    gstin_id = gstin_id.upper().strip()
+
+    # Get all data (reuse existing endpoint logic)
+    score = db.query(FraudScore).filter(
+        FraudScore.gstin == gstin_id
+    ).first()
+    if not score:
+        raise HTTPException(
+            status_code=404,
+            detail=f"GSTIN {gstin_id} not found"
+        )
+
+    company  = db.query(Company).filter(Company.gstin == gstin_id).first()
+    features = db.query(MLFeature).filter(MLFeature.gstin == gstin_id).first()
+    flags    = [
+        f.strip() for f in (score.rule_flags or "").split("|")
+        if f.strip() != "No flags"
+    ]
+
+    gstin_data = {
+        "gstin": gstin_id,
+        "company_info": {
+            "company_name":     company.company_name if company else "Unknown",
+            "state":            company.state_name if company else "Unknown",
+            "industry":         company.industry if company else "Unknown",
+            "annual_turnover":  company.annual_turnover if company else 0,
+            "registration_date":company.registration_date if company else "N/A",
+            "years_old":        company.years_old if company else 0,
+        },
+        "risk_summary": {
+            "ensemble_score":   score.ensemble_score,
+            "risk_level":       score.risk_level,
+            "in_circular_ring": score.in_circular_ring,
+            "models_agreeing":  score.models_agreeing,
+        },
+        "score_breakdown": {
+            "xgb_score":        score.xgb_score,
+            "anomaly_score":    score.anomaly_score,
+            "graph_risk_score": score.graph_risk_score,
+            "rule_score":       score.rule_score,
+        },
+        "fraud_indicators": {
+            "avg_itc_ratio":      features.avg_itc_ratio if features else 0,
+            "filing_rate":        features.filing_rate if features else 0,
+            "missing_returns":    features.missing_returns if features else 0,
+            "spike_ratio":        features.spike_ratio if features else 0,
+            "invoice_match_rate": features.invoice_match_rate if features else 0,
+            "sales_volatility":   features.sales_volatility if features else 0,
+        },
+        "rule_flags":    flags,
+        "recommendation": get_recommendation(score.risk_level),
+    }
+
+    # Generate PDF
+    pdf_bytes = generate_gstin_report(gstin_data)
+
+    # Log the report download
+    log_action(db, "REPORT_DOWNLOADED", gstin_id,
+               f"PDF report downloaded for {score.risk_level} risk GSTIN")
+
+    return StreamingResponse(
+        io.BytesIO(pdf_bytes),
+        media_type = "application/pdf",
+        headers    = {
+            "Content-Disposition": f"attachment; filename=GST_Report_{gstin_id}.pdf",
+            "Content-Length":      str(len(pdf_bytes)),
+        }
+    )
+
+
+@app.get("/api/report/bulk/alerts", tags=["Reports"])
+async def download_alerts_report(
+    risk_level: Optional[str] = "CRITICAL",
+    db: Session = Depends(get_db),
+):
+    """Download a summary PDF of all alerts at a given risk level"""
+    try:
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle  # type: ignore[import]
+        from reportlab.lib.pagesizes import A4  # type: ignore[import]
+        from reportlab.lib.styles import getSampleStyleSheet  # type: ignore[import]
+        from reportlab.lib.colors import HexColor  # type: ignore[import]
+    except ImportError:
+        raise HTTPException(
+            status_code=503,
+            detail="PDF generation requires the reportlab package. Install it to enable PDF export."
+        )
+
+    alerts = db.query(FraudAlert).filter(
+        FraudAlert.risk_level == risk_level.upper()
+    ).order_by(FraudAlert.ensemble_score.desc()).all()
+
+    if not alerts:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No {risk_level} alerts found"
+        )
+
+    buffer = io.BytesIO()
+    doc    = SimpleDocTemplate(buffer, pagesize=A4,
+                               rightMargin=40, leftMargin=40,
+                               topMargin=40, bottomMargin=40)
+    styles  = getSampleStyleSheet()
+    content = []
+
+    content.append(Paragraph(
+        f"GST FraudShield — {risk_level} Risk Alert Report",
+        styles["Title"]
+    ))
+    content.append(Paragraph(
+        f"Generated: {datetime.now().strftime('%d %B %Y')} | "
+        f"Total Alerts: {len(alerts)}",
+        styles["Normal"]
+    ))
+    content.append(Spacer(1, 20))
+
+    data = [["#", "GSTIN", "Score", "Fraud Type", "Status"]]
+    for i, a in enumerate(alerts):
+        data.append([
+            str(i+1),
+            a.gstin,
+            f"{a.ensemble_score:.1f}%",
+            a.fraud_type or "unknown",
+            a.status,
+        ])
+
+    table = Table(data, colWidths=["5%","30%","12%","30%","23%"])
+    table.setStyle(TableStyle([
+        ("BACKGROUND",   (0,0),(-1,0),  HexColor("#1C1C1E")),
+        ("TEXTCOLOR",    (0,0),(-1,0),  HexColor("#FFFFFF")),
+        ("FONTNAME",     (0,0),(-1,0),  "Helvetica-Bold"),
+        ("FONTSIZE",     (0,0),(-1,-1), 8),
+        ("ROWBACKGROUNDS",(0,1),(-1,-1),[HexColor("#FFFFFF"),HexColor("#F9FAFB")]),
+        ("GRID",         (0,0),(-1,-1), 0.5, HexColor("#E5E7EB")),
+        ("ALIGN",        (0,0),(0,-1),  "CENTER"),
+        ("ALIGN",        (2,0),(2,-1),  "CENTER"),
+        ("LEFTPADDING",  (0,0),(-1,-1), 6),
+        ("RIGHTPADDING", (0,0),(-1,-1), 6),
+        ("TOPPADDING",   (0,0),(-1,-1), 5),
+        ("BOTTOMPADDING",(0,0),(-1,-1), 5),
+    ]))
+    content.append(table)
+    doc.build(content)
+    buffer.seek(0)
+    pdf_bytes = buffer.getvalue()
+
+    return StreamingResponse(
+        io.BytesIO(pdf_bytes),
+        media_type = "application/pdf",
+        headers    = {
+            "Content-Disposition": f"attachment; filename=GST_Alerts_{risk_level}.pdf",
+        }
+    )
