@@ -1,45 +1,31 @@
 """
-GST Fraud Detection System
-Authentication System
-JWT tokens + Role-based access
+GST Fraud Detection - Auth System
+Simple JWT authentication
 """
 
 from datetime import datetime, timedelta
 from typing import Optional
-import importlib
-try:
-    jose = importlib.import_module("jose")
-    JWTError = jose.JWTError
-    jwt = jose.jwt
-except Exception:  # pragma: no cover - fallback when jose is not available in the environment
-    raise RuntimeError("python-jose is required for JWT handling. Install it with: pip install python-jose[cryptography]")
-try:
-    passlib_context = importlib.import_module("passlib.context")
-    CryptContext = passlib_context.CryptContext
-except Exception:  # pragma: no cover - fallback when passlib is not available in the environment
-    class CryptContext:  # lightweight fallback to provide clearer error at runtime
-        def __init__(self, *args, **kwargs):
-            raise RuntimeError("passlib is required for password hashing. Install it with: pip install passlib[bcrypt]")
+from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
+import jwt
 import os
 
 SECRET_KEY  = os.getenv("SECRET_KEY", "gst-fraud-secret-key-2024")
 ALGORITHM   = "HS256"
-EXPIRE_MINS = 60 * 8   # 8 hours
+EXPIRE_MINS = 60 * 8
 
-pwd_context   = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
-# ── Default users (move to DB in production) ──
+# ── Simple users — no bcrypt needed ──
 USERS_DB = {
     "admin": {
         "username":  "admin",
         "full_name": "Admin User",
         "email":     "admin@gstfraud.in",
         "role":      "admin",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",  # secret
+        "password":  "secret",
         "disabled":  False,
     },
     "officer": {
@@ -47,7 +33,7 @@ USERS_DB = {
         "full_name": "GST Officer",
         "email":     "officer@gst.gov.in",
         "role":      "officer",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "password":  "secret",
         "disabled":  False,
     },
     "ca": {
@@ -55,7 +41,7 @@ USERS_DB = {
         "full_name": "CA Auditor",
         "email":     "ca@firm.in",
         "role":      "ca",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "password":  "secret",
         "disabled":  False,
     },
 }
@@ -65,21 +51,22 @@ class Token(BaseModel):
     token_type:   str
     user:         dict
 
-def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
-
 def get_user(username: str):
     return USERS_DB.get(username)
 
 def authenticate_user(username: str, password: str):
     user = get_user(username)
-    if not user or not verify_password(password, user["hashed_password"]):
+    if not user:
+        return False
+    if user["password"] != password:
         return False
     return user
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    to_encode.update({"exp": datetime.utcnow() + timedelta(minutes=EXPIRE_MINS)})
+    to_encode.update({
+        "exp": datetime.utcnow() + timedelta(minutes=EXPIRE_MINS)
+    })
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
@@ -93,7 +80,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         username = payload.get("sub")
         if not username:
             raise exc
-    except JWTError:
+    except Exception:
         raise exc
     user = get_user(username)
     if not user:
@@ -108,9 +95,6 @@ async def get_current_active_user(user=Depends(get_current_user)):
 def require_role(roles: list):
     async def checker(user=Depends(get_current_active_user)):
         if user["role"] not in roles:
-            raise HTTPException(
-                status_code=403,
-                detail=f"Access denied. Required: {roles}"
-            )
+            raise HTTPException(status_code=403, detail=f"Access denied")
         return user
     return checker

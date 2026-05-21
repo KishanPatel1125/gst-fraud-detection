@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 // ── API URL ──
-const API = "https://gst-fraud-detection-production.up.railway.app";
+const API = "http://localhost:8000";
 
 // ── Mock data fallback ──
 const MOCK = {
@@ -396,14 +396,13 @@ export default function App(){
     setUser(null);setToken("");
   };
 
-  // ── Show login if not authenticated ──
-  if(!user) return<Login onLogin={handleLogin}/>;
-
   // ── Auth headers ──
   const authHeaders=token?{Authorization:`Bearer ${token}`}:{};
 
   // ── Load dashboard data ──
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
+    if(!user)return;
     Promise.all([
       fetch(`${API}/api/dashboard/stats`,{headers:authHeaders}).then(r=>r.json()),
       fetch(`${API}/api/top-risks?n=10`,{headers:authHeaders}).then(r=>r.json()),
@@ -412,19 +411,21 @@ export default function App(){
     }).catch(()=>{
       setStats(MOCK.stats);setTopRisks(MOCK.topRisks);
     }).finally(()=>setLoaded(true));
-  },[]);
+  },[user]);
 
   // ── Load alerts ──
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
-    if(activeTab!=="alerts")return;
+    if(!user||activeTab!=="alerts")return;
     setAlertsLoading(true);
     fetch(`${API}/api/alerts?page_size=50`,{headers:authHeaders})
       .then(r=>r.json()).then(d=>setAlerts(d.alerts||[]))
       .catch(()=>setAlerts(MOCK.topRisks))
       .finally(()=>setAlertsLoading(false));
-  },[activeTab]);
+  },[activeTab,user]);
 
   // ── Search ──
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
     if(!search.trim()||search.length<3){setSearchResults([]);return;}
     const t=setTimeout(()=>{
@@ -436,6 +437,9 @@ export default function App(){
     },350);
     return()=>clearTimeout(t);
   },[search]);
+
+  // ── Show login if not authenticated (AFTER all hooks) ──
+  if(!user) return<Login onLogin={handleLogin}/>;
 
   const fraudTypes=stats?.fraud_type_breakdown||{};
   const maxFraud=Math.max(...Object.values(fraudTypes),1);

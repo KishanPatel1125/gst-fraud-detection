@@ -3,7 +3,6 @@ GST Fraud Detection System
 FastAPI Backend — Phase 4 (Updated with PostgreSQL)
 All data now reads from Supabase PostgreSQL database
 """
-
 from fastapi import Form
 from fastapi.responses import StreamingResponse
 from auth import authenticate_user, create_access_token, get_current_active_user, Token
@@ -471,9 +470,7 @@ New endpoints for Authentication + PDF Reports
 """
 
 # ── ADD THESE IMPORTS at the top of main.py ──
-from fastapi import Form
-from fastapi.responses import StreamingResponse
-import io
+
 
 # ── Auth endpoints ──────────────────────────
 
