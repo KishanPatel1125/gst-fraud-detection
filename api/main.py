@@ -3,6 +3,7 @@ GST Fraud Detection System
 FastAPI Backend — Phase 4 (Updated with PostgreSQL)
 All data now reads from Supabase PostgreSQL database
 """
+from bulk_processor import process_bulk_upload, generate_bulk_report, SAMPLE_CSV_TEMPLATE
 from fastapi import Form
 from fastapi.responses import StreamingResponse
 from auth import authenticate_user, create_access_token, get_current_active_user, Token
@@ -695,3 +696,146 @@ async def download_alerts_report(
             "Content-Disposition": f"attachment; filename=GST_Alerts_{risk_level}.pdf",
         }
     )
+# ────────────────────────────────────────
+# ENDPOINT: Bulk Upload and Analyze
+# POST /api/bulk/upload
+# ────────────────────────────────────────
+@app.post("/api/bulk/upload", tags=["Bulk Analysis"])
+async def bulk_upload_analyze(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+):
+    """
+    Upload a CSV file with multiple GSTINs for bulk analysis.
+ 
+    CSV Format (minimum):
+    gstin
+    27AABCU9603R1ZX
+    07AAACR5055K1Z5
+ 
+    CSV Format (with optional features):
+    gstin,company_name,annual_turnover,missing_returns,avg_itc_ratio
+    27AABCU9603R1ZX,Company A,5000000,0,0.75
+ 
+    Returns fraud scores for all GSTINs.
+    """
+    if not file.filename.endswith(".csv"):
+        raise HTTPException(
+            status_code=400,
+            detail="Only CSV files accepted"
+        )
+ 
+    if file.size and file.size > 10 * 1024 * 1024:  # 10MB limit
+        raise HTTPException(
+            status_code=400,
+            detail="File too large. Maximum 10MB allowed"
+        )
+ 
+    contents = await file.read()
+ 
+    results = process_bulk_upload(
+        file_contents = contents,
+        db            = db,
+        base_dir      = BASE_DIR,
+    )
+ 
+    if "error" in results:
+        raise HTTPException(status_code=400, detail=results["error"])
+ 
+    # Log the bulk upload
+    log_action(
+        db, "BULK_UPLOAD",
+        details=f"Analyzed {results['total_analyzed']} GSTINs | "
+                f"Critical: {results['summary']['critical']} | "
+                f"High: {results['summary']['high']}"
+    )
+ 
+    return results
+ 
+ 
+# ────────────────────────────────────────
+# ENDPOINT: Download Bulk Report as CSV
+# POST /api/bulk/download
+# ────────────────────────────────────────
+@app.post("/api/bulk/download", tags=["Bulk Analysis"])
+async def bulk_download_report(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+):
+    """
+    Upload CSV → analyze all GSTINs → download results as CSV report.
+    The downloaded CSV includes fraud scores, risk levels, and recommended actions.
+    """
+    contents = await file.read()
+ 
+    results = process_bulk_upload(
+        file_contents = contents,
+        db            = db,
+        base_dir      = BASE_DIR,
+    )
+ 
+    if "error" in results:
+        raise HTTPException(status_code=400, detail=results["error"])
+ 
+    # Convert results to DataFrame
+    results_df = pd.DataFrame(results["results"])
+ 
+    # Read original upload for company names
+    import io as _io
+    upload_df = pd.read_csv(_io.BytesIO(contents))
+    upload_df["gstin"] = upload_df["gstin"].str.upper().str.strip()
+ 
+    csv_bytes = generate_bulk_report(results_df, upload_df)
+ 
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    return StreamingResponse(
+        io.BytesIO(csv_bytes),
+        media_type = "text/csv",
+        headers    = {
+            "Content-Disposition":
+                f"attachment; filename=GST_Bulk_Analysis_{timestamp}.csv"
+        }
+    )
+ 
+ 
+# ────────────────────────────────────────
+# ENDPOINT: Download Sample CSV Template
+# GET /api/bulk/template
+# ────────────────────────────────────────
+@app.get("/api/bulk/template", tags=["Bulk Analysis"])
+async def download_template():
+    """
+    Download a sample CSV template for bulk upload.
+    Fill this template with your GSTINs and upload via /api/bulk/upload
+    """
+    return StreamingResponse(
+        io.BytesIO(SAMPLE_CSV_TEMPLATE.encode()),
+        media_type = "text/csv",
+        headers    = {
+            "Content-Disposition":
+                "attachment; filename=GST_Bulk_Upload_Template.csv"
+        }
+    )
+ 
+ 
+# ────────────────────────────────────────
+# ENDPOINT: Bulk Upload Stats
+# GET /api/bulk/stats
+# ────────────────────────────────────────
+@app.get("/api/bulk/stats", tags=["Bulk Analysis"])
+async def get_bulk_stats(db: Session = Depends(get_db)):
+    """Get statistics about bulk upload usage"""
+    bulk_logs = db.query(AuditLog).filter(
+        AuditLog.action == "BULK_UPLOAD"
+    ).all()
+ 
+    return {
+        "total_bulk_uploads": len(bulk_logs),
+        "last_upload":        str(bulk_logs[-1].created_at) if bulk_logs else None,
+        "total_gstins_analyzed": sum(
+            int(log.details.split("Analyzed")[1].split("GSTINs")[0].strip())
+            for log in bulk_logs
+            if log.details and "Analyzed" in log.details
+        ) if bulk_logs else 0,
+    }
+ 

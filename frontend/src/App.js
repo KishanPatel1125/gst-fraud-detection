@@ -1,4 +1,6 @@
+import BulkUpload from "./BulkUpload";
 import { useState, useEffect, useRef } from "react";
+
 
 // ── API URL ──
 const API = "http://localhost:8000";
@@ -484,7 +486,7 @@ export default function App(){
         </div>
 
         <nav style={{display:"flex",gap:2}}>
-          {[["dashboard","📊","Dashboard"],["alerts","🚨","Alerts"],["search","🔍","Search"]].map(([id,icon,label])=>(
+          {[["dashboard","📊","Dashboard"],["alerts","🚨","Alerts"],["search","🔍","Search"],["bulk","📤","Bulk Upload"]].map(([id,icon,label])=>(
             <button key={id} className={`nav-btn ${activeTab===id?"active":""}`} onClick={()=>setActiveTab(id)} style={{color:activeTab===id?"#FF3B5C":"#8E8E93"}}>
               {icon} {label}
             </button>
@@ -765,6 +767,12 @@ export default function App(){
                 </div>
               )}
             </div>
+          </div>
+        )}
+         {/* ── BULK UPLOAD TAB ── (ADD THIS HERE) */}
+        {activeTab==="bulk"&&(
+          <div className="tab-content">
+            <BulkUpload token={token}/>
           </div>
         )}
       </main>
