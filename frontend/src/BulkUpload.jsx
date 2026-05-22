@@ -3,7 +3,7 @@
 
 import { useState, useRef } from "react";
 
-const API = "https://gst-fraud-detection-production.up.railway.app";
+const API = "http://localhost:8000"; // Change if your API server is hosted elsewhere
 
 const riskColor = l => ({
   CRITICAL:"#FF3B5C", HIGH:"#FF8C00",
