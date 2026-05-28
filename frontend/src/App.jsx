@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, CartesianGrid, Legend, RadialBarChart, RadialBar } from "recharts";
 import BulkUpload from "./BulkUpload";
+import IndiaHeatmap from "./IndiaHeatmap";
+import UserManagement from "./UserManagement";
 
 const API = "http://localhost:8000";
 
@@ -555,7 +557,7 @@ export default function App(){
     </div>
   );
 
-  const navTabs=[["dashboard","📊","Dashboard"],["alerts","🚨","Alerts"],["search","🔍","Search"],["bulk","📤","Bulk"]];
+  const navTabs=[["dashboard","📊","Dashboard"],["alerts","🚨","Alerts"],["search","🔍","Search"],["bulk","📤","Bulk"],["heatmap","🗺️","Heatmap"],["users","👥","Users"]];
 
   return(
     <div style={{minHeight:"100vh",background:bg,color:txt,fontFamily:"'Sora',sans-serif",transition:"background 0.4s,color 0.4s"}}>
@@ -965,6 +967,17 @@ export default function App(){
             <BulkUpload token={token}/>
           </div>
         )}
+        {activeTab==="heatmap"&&(
+          <div className="tab-content">
+            <IndiaHeatmap token={token} isDark={isDark}/>
+          </div>
+        )}
+        {activeTab==="users"&&(
+          <div className="tab-content">
+            <UserManagement token={token} currentUser={user} isDark={isDark}/>
+          </div>
+        )}
+        
       </main>
 
       {selectedGstin&&<GSTINModal gstin={selectedGstin} onClose={()=>setSelectedGstin(null)} token={token} isDark={isDark}/>}

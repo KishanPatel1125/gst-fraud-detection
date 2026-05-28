@@ -98,3 +98,40 @@ def require_role(roles: list):
             raise HTTPException(status_code=403, detail=f"Access denied")
         return user
     return checker
+# ── In-memory user store (replace with DB in production) ──
+def get_all_users():
+    return [
+        {
+            "username":  u["username"],
+            "full_name": u["full_name"],
+            "email":     u["email"],
+            "role":      u["role"],
+            "disabled":  u["disabled"],
+        }
+        for u in USERS_DB.values()
+    ]
+
+def add_user(username, password, full_name, email, role):
+    if username in USERS_DB:
+        return False, "Username already exists"
+    USERS_DB[username] = {
+        "username":  username,
+        "full_name": full_name,
+        "email":     email,
+        "role":      role,
+        "password":  password,
+        "disabled":  False,
+    }
+    return True, "User created"
+
+def update_password(username, new_password):
+    if username not in USERS_DB:
+        return False, "User not found"
+    USERS_DB[username]["password"] = new_password
+    return True, "Password updated"
+
+def toggle_user(username):
+    if username not in USERS_DB:
+        return False, "User not found"
+    USERS_DB[username]["disabled"] = not USERS_DB[username]["disabled"]
+    return True, USERS_DB[username]["disabled"]

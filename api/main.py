@@ -838,4 +838,95 @@ async def get_bulk_stats(db: Session = Depends(get_db)):
             if log.details and "Analyzed" in log.details
         ) if bulk_logs else 0,
     }
- 
+from auth import (
+    get_all_users, add_user,
+    update_password, toggle_user
+)
+from pydantic import BaseModel
+
+class NewUser(BaseModel):
+    username:  str
+    password:  str
+    full_name: str
+    email:     str
+    role:      str
+
+class PasswordUpdate(BaseModel):
+    username:     str
+    new_password: str
+
+# Get all users — admin only
+@app.get("/api/users", tags=["Users"])
+async def get_users(
+    current_user=Depends(get_current_active_user)
+):
+    if current_user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Admin only")
+    return {"users": get_all_users()}
+
+# Add new user — admin only
+@app.post("/api/users", tags=["Users"])
+async def create_user(
+    user: NewUser,
+    current_user=Depends(get_current_active_user)
+):
+    if current_user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Admin only")
+    if user.role not in ["admin","officer","ca"]:
+        raise HTTPException(status_code=400, detail="Invalid role")
+    ok, msg = add_user(
+        user.username, user.password,
+        user.full_name, user.email, user.role
+    )
+    if not ok:
+        raise HTTPException(status_code=400, detail=msg)
+    return {"message": msg}
+
+# Update password
+@app.patch("/api/users/password", tags=["Users"])
+async def change_password(
+    data: PasswordUpdate,
+    current_user=Depends(get_current_active_user)
+):
+    # Admin can change anyone, others only themselves
+    if current_user["role"] != "admin" and \
+       current_user["username"] != data.username:
+        raise HTTPException(status_code=403, detail="Not allowed")
+    ok, msg = update_password(data.username, data.new_password)
+    if not ok:
+        raise HTTPException(status_code=404, detail=msg)
+    return {"message": msg}
+
+# Toggle user enable/disable — admin only
+@app.patch("/api/users/{username}/toggle", tags=["Users"])
+async def toggle_user_status(
+    username: str,
+    current_user=Depends(get_current_active_user)
+):
+    if current_user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Admin only")
+    if username == current_user["username"]:
+        raise HTTPException(status_code=400, detail="Cannot disable yourself")
+    ok, disabled = toggle_user(username)
+    if not ok:
+        raise HTTPException(status_code=404, detail="User not found")
+    return {
+        "message": f"User {'disabled' if disabled else 'enabled'}",
+        "disabled": disabled
+    }
+
+# Delete user — admin only
+@app.delete("/api/users/{username}", tags=["Users"])
+async def delete_user(
+    username: str,
+    current_user=Depends(get_current_active_user)
+):
+    if current_user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Admin only")
+    if username == current_user["username"]:
+        raise HTTPException(status_code=400, detail="Cannot delete yourself")
+    from auth import USERS_DB
+    if username not in USERS_DB:
+        raise HTTPException(status_code=404, detail="User not found")
+    del USERS_DB[username]
+    return {"message": f"User {username} deleted"}
