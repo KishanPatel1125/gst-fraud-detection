@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, CartesianGrid, Legend, RadialBarChart, RadialBar } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip,
+  ResponsiveContainer, PieChart, Pie, Cell,
+  CartesianGrid, Legend, RadialBarChart, RadialBar,
+  LineChart, Line
+} from "recharts";
 import BulkUpload from "./BulkUpload";
 import IndiaHeatmap from "./IndiaHeatmap";
 import UserManagement from "./UserManagement";
@@ -318,41 +322,63 @@ function Login({onLogin,isDark,onToggleTheme}){
    GSTIN MODAL
 ═══════════════════════════════════════════════════════════════════════ */
 function GSTINModal({gstin,onClose,token,isDark}){
-  const[data,setData]=useState(null);
-  const[loading,setLoading]=useState(true);
-  const[pdfLoading,setPdfLoading]=useState(false);
+  const[data,      setData]      = useState(null);
+  const[timeline,  setTimeline]  = useState([]);
+  const[loading,   setLoading]   = useState(true);
+  const[pdfLoading,setPdfLoading]= useState(false);
+  const[activeTab, setActiveTab] = useState("overview");
 
   useEffect(()=>{
-    fetch(`${API}/api/gstin/${gstin}`,{headers:token?{Authorization:`Bearer ${token}`}:{}})
-      .then(r=>r.json()).then(d=>{setData(d);setLoading(false);}).catch(()=>setLoading(false));
+    const headers = token?{Authorization:`Bearer ${token}`}:{};
+
+    // Load GSTIN details
+    fetch(`${API}/api/gstin/${gstin}`,{headers})
+      .then(r=>r.json())
+      .then(d=>{ setData(d); setLoading(false); })
+      .catch(()=>setLoading(false));
+
+    // Load timeline
+    fetch(`${API}/api/gstin/${gstin}/timeline`,{headers})
+      .then(r=>r.json())
+      .then(d=>setTimeline(d.timeline||[]))
+      .catch(()=>{});
   },[gstin,token]);
 
   const downloadPDF=async()=>{
     setPdfLoading(true);
     try{
-      const res=await fetch(`${API}/api/report/${gstin}`,{headers:token?{Authorization:`Bearer ${token}`}:{}});
+      const res=await fetch(`${API}/api/report/${gstin}`,{
+        headers:token?{Authorization:`Bearer ${token}`}:{}
+      });
       if(!res.ok){alert("PDF failed");return;}
       const blob=await res.blob();
       const url=URL.createObjectURL(blob);
       const a=document.createElement("a");
-      a.href=url;a.download=`GST_Report_${gstin}.pdf`;
-      document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+      a.href=url; a.download=`GST_Report_${gstin}.pdf`;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
     }catch{alert("PDF download failed");}
     finally{setPdfLoading(false);}
   };
 
-  const level=data?.risk_summary?.risk_level||"LOW";
-  const color=riskColor(level,isDark);
-  const modalBg  = isDark?"#141416":"#ffffff";
-  const modalBord= isDark?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)";
-  const txt      = isDark?"#F5F5F7":"#111";
-  const muted    = isDark?"#8E8E93":"#666";
-  const surfaceBg= isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.03)";
+  const level     = data?.risk_summary?.risk_level||"LOW";
+  const color     = riskColor(level,isDark);
+  const modalBg   = isDark?"#141416":"#ffffff";
+  const modalBord = isDark?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)";
+  const txt       = isDark?"#F5F5F7":"#111";
+  const muted     = isDark?"#8E8E93":"#666";
+  const surfaceBg = isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.03)";
+  const tabBd     = isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.07)";
+
+  // ── Filed months count ──
+  const filedCount   = timeline.filter(t=>t.filed).length;
+  const missingCount = timeline.filter(t=>!t.filed).length;
+  const maxSales     = Math.max(...timeline.map(t=>t.sales),1);
 
   return(
-    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.78)",backdropFilter:"blur(16px)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:20,animation:"fadeIn 0.2s ease"}}>
-      <div onClick={e=>e.stopPropagation()}
-        style={{background:modalBg,border:`1px solid ${modalBord}`,borderRadius:24,padding:"24px",width:"min(580px,100%)",maxHeight:"88vh",overflowY:"auto",animation:"slideUp 0.35s cubic-bezier(0.34,1.2,0.64,1)",transition:"background 0.3s"}}>
+    <div onClick={onClose} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.85)",backdropFilter:"blur(16px)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center",padding:20,animation:"fadeIn 0.2s ease"}}>
+      <div onClick={e=>e.stopPropagation()} style={{background:modalBg,border:`1px solid ${modalBord}`,borderRadius:24,padding:"24px",width:"min(620px,100%)",maxHeight:"90vh",overflowY:"auto",animation:"slideUp 0.35s ease",transition:"background 0.3s"}}>
+
         {loading?(
           <div style={{textAlign:"center",padding:48,color:muted}}>
             <div style={{fontSize:36,animation:"spin 0.8s linear infinite",display:"inline-block"}}>⟳</div>
@@ -360,8 +386,8 @@ function GSTINModal({gstin,onClose,token,isDark}){
           </div>
         ):data?(
           <>
-            {/* Header */}
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
+            {/* ── Header ── */}
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16,flexWrap:"wrap",gap:12}}>
               <div>
                 <div style={{fontSize:11,color:muted,letterSpacing:"0.08em",marginBottom:6}}>INVESTIGATION REPORT</div>
                 <div style={{fontSize:16,fontWeight:700,color:txt,fontFamily:"'DM Mono',monospace"}}>{gstin}</div>
@@ -371,67 +397,219 @@ function GSTINModal({gstin,onClose,token,isDark}){
               <div style={{textAlign:"right"}}>
                 <div style={{padding:"4px 14px",borderRadius:20,background:riskBg(level,isDark),color,fontSize:12,fontWeight:700,border:`1px solid ${color}40`,marginBottom:8,display:"inline-block"}}>{level} RISK</div>
                 <div style={{fontSize:38,fontWeight:900,color,fontFamily:"'DM Mono',monospace",lineHeight:1}}>{data.risk_summary?.ensemble_score?.toFixed(1)}%</div>
-                {data.risk_summary?.in_circular_ring&&<div style={{fontSize:11,color:"#FF8C00",marginTop:4}}>🔄 In circular trading ring</div>}
-                {data.risk_summary?.models_agreeing&&(
-                  <div style={{fontSize:11,color:"#BF5AF2",marginTop:2}}>{data.risk_summary.models_agreeing} models agree</div>
-                )}
+                {data.risk_summary?.in_circular_ring&&<div style={{fontSize:11,color:"#FF8C00",marginTop:4}}>🔄 Circular ring</div>}
+                {data.risk_summary?.models_agreeing&&<div style={{fontSize:11,color:"#BF5AF2",marginTop:2}}>{data.risk_summary.models_agreeing} models agree</div>}
               </div>
             </div>
 
-            {/* Score breakdown */}
-            <div className="modal-score-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:16}}>
-              {[{label:"XGBoost",val:data.score_breakdown?.xgb_score,color:"#0A84FF",icon:"🤖"},
-                {label:"Anomaly",val:data.score_breakdown?.anomaly_score,color:"#BF5AF2",icon:"🎯"},
-                {label:"Graph",val:data.score_breakdown?.graph_risk_score,color:"#FF9F0A",icon:"🕸️"},
-                {label:"Rules",val:data.score_breakdown?.rule_score,color:"#30D158",icon:"📋"}].map(({label,val,color:c,icon})=>(
-                <div key={label} style={{background:surfaceBg,borderRadius:14,padding:"12px 14px"}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
-                    <span style={{fontSize:12,color:muted}}>{icon} {label}</span>
-                    <span style={{fontSize:18,fontWeight:800,color:c,fontFamily:"'DM Mono',monospace"}}>{val?.toFixed(1)}%</span>
-                  </div>
-                  <div style={{height:4,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.07)",borderRadius:2,overflow:"hidden"}}>
-                    <div style={{height:"100%",width:`${val}%`,background:c,borderRadius:2,backgroundImage:"linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent)",backgroundSize:"200% 100%",animation:"shimmerBar 2s ease-in-out infinite"}}/>
-                  </div>
-                </div>
+            {/* ── Tab navigation ── */}
+            <div style={{display:"flex",gap:6,marginBottom:16,borderBottom:`1px solid ${tabBd}`,paddingBottom:12}}>
+              {[["overview","📊 Overview"],["timeline","📅 Timeline"],["indicators","🎯 Indicators"]].map(([id,label])=>(
+                <button key={id} onClick={()=>setActiveTab(id)} style={{
+                  padding:"6px 14px",borderRadius:10,border:`1px solid ${tabBd}`,
+                  background:activeTab===id?"rgba(255,59,92,0.12)":surfaceBg,
+                  color:activeTab===id?"#FF3B5C":muted,
+                  fontSize:12,fontWeight:500,cursor:"pointer",
+                  fontFamily:"inherit",transition:"all 0.2s",
+                }}>{label}</button>
               ))}
             </div>
 
-            {/* Key Fraud Indicators */}
-            <div style={{background:surfaceBg,border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.07)"}`,borderRadius:14,padding:16,marginBottom:14}}>
-              <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:10,letterSpacing:"0.06em"}}>📊 KEY FRAUD INDICATORS</div>
-              <div className="modal-indicators-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-                {[
-                  {label:"ITC Ratio",       val:`${data.fraud_indicators?.avg_itc_ratio?.toFixed(3)||0}x`},
-                  {label:"Filing Rate",     val:`${(data.fraud_indicators?.filing_rate*100||0).toFixed(1)}%`},
-                  {label:"Missing Returns", val:`${data.fraud_indicators?.missing_returns||0} months`},
-                  {label:"Sales Spike",     val:`${data.fraud_indicators?.spike_ratio?.toFixed(2)||0}x`},
-                  {label:"Invoice Match",   val:`${(data.fraud_indicators?.invoice_match_rate*100||0).toFixed(1)}%`},
-                  {label:"Sales Volatility",val:`${data.fraud_indicators?.sales_volatility?.toFixed(3)||0}`},
-                ].map(({label,val})=>(
-                  <div key={label} style={{display:"flex",justifyContent:"space-between",fontSize:12,padding:"4px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.04)":"rgba(0,0,0,0.05)"}`}}>
-                    <span style={{color:muted}}>{label}</span>
-                    <span style={{color:txt,fontFamily:"'DM Mono',monospace",fontWeight:600}}>{val}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* ── OVERVIEW TAB ── */}
+            {activeTab==="overview"&&(
+              <>
+                {/* Score breakdown */}
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
+                  {[
+                    {label:"XGBoost",val:data.score_breakdown?.xgb_score,      color:"#0A84FF",icon:"🤖"},
+                    {label:"Anomaly",val:data.score_breakdown?.anomaly_score,   color:"#BF5AF2",icon:"🎯"},
+                    {label:"Graph",  val:data.score_breakdown?.graph_risk_score,color:"#FF9F0A",icon:"🕸️"},
+                    {label:"Rules",  val:data.score_breakdown?.rule_score,      color:"#30D158",icon:"📋"},
+                  ].map(({label,val,color:c,icon})=>(
+                    <div key={label} style={{background:surfaceBg,borderRadius:14,padding:"12px 14px"}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                        <span style={{fontSize:12,color:muted}}>{icon} {label}</span>
+                        <span style={{fontSize:18,fontWeight:800,color:c,fontFamily:"'DM Mono',monospace"}}>{val?.toFixed(1)}%</span>
+                      </div>
+                      <div style={{height:4,background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.07)",borderRadius:2,overflow:"hidden"}}>
+                        <div style={{height:"100%",width:`${val}%`,background:c,borderRadius:2}}/>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-            {/* Rule flags */}
-            {data.rule_flags?.length>0&&(
-              <div style={{background:"rgba(255,59,92,0.06)",border:"1px solid rgba(255,59,92,0.2)",borderRadius:14,padding:16,marginBottom:14}}>
-                <div style={{fontSize:11,color:"#FF3B5C",fontWeight:700,marginBottom:10,letterSpacing:"0.06em"}}>⚠️ FRAUD INDICATORS DETECTED</div>
-                {data.rule_flags.map((f,i)=><div key={i} style={{fontSize:13,color:txt,padding:"4px 0",borderBottom:i<data.rule_flags.length-1?`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`:""  }}>• {f}</div>)}
+                {/* Rule flags */}
+                {data.rule_flags?.length>0&&(
+                  <div style={{background:"rgba(255,59,92,0.06)",border:"1px solid rgba(255,59,92,0.2)",borderRadius:14,padding:14,marginBottom:14}}>
+                    <div style={{fontSize:11,color:"#FF3B5C",fontWeight:700,marginBottom:8,letterSpacing:"0.06em"}}>⚠️ FRAUD INDICATORS</div>
+                    {data.rule_flags.map((f,i)=>(
+                      <div key={i} style={{fontSize:12,color:txt,padding:"4px 0",borderBottom:i<data.rule_flags.length-1?`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`:""  }}>• {f}</div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Recommendation */}
+                <div style={{background:surfaceBg,border:`1px solid ${tabBd}`,borderRadius:14,padding:14,marginBottom:14}}>
+                  <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:8,letterSpacing:"0.06em"}}>📋 RECOMMENDATION</div>
+                  <div style={{fontSize:13,color:txt,lineHeight:1.7}}>{data.recommendation}</div>
+                </div>
+              </>
+            )}
+
+            {/* ── TIMELINE TAB ── */}
+            {activeTab==="timeline"&&(
+              <div>
+                {/* Filing stats */}
+                <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,marginBottom:16}}>
+                  {[
+                    {label:"Filed",   value:filedCount,   color:"#30D158"},
+                    {label:"Missing", value:missingCount,  color:"#FF3B5C"},
+                    {label:"Rate",    value:`${((filedCount/Math.max(timeline.length,1))*100).toFixed(0)}%`, color:"#0A84FF"},
+                  ].map(({label,value,color:c})=>(
+                    <div key={label} style={{background:surfaceBg,borderRadius:12,padding:"12px 14px",textAlign:"center"}}>
+                      <div style={{fontSize:22,fontWeight:800,color:c,fontFamily:"'DM Mono',monospace"}}>{value}</div>
+                      <div style={{fontSize:11,color:muted,marginTop:4}}>{label} months</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Sales line chart */}
+                {timeline.length>0&&(
+                  <>
+                    <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:10,letterSpacing:"0.06em"}}>📈 MONTHLY SALES & ITC TREND</div>
+                    <ResponsiveContainer width="100%" height={150}>
+                      <LineChart data={timeline} margin={{top:0,right:0,left:-30,bottom:0}}>
+                        <CartesianGrid strokeDasharray="3 3" stroke={isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.06)"}/>
+                        <XAxis dataKey="month" tick={{fill:muted,fontSize:9}} axisLine={false} tickLine={false} interval={2}/>
+                        <YAxis tick={{fill:muted,fontSize:9}} axisLine={false} tickLine={false}/>
+                        <Tooltip content={<ChartTooltip isDark={isDark}/>} formatter={v=>`₹${(v/100000).toFixed(1)}L`}/>
+                        <Line type="monotone" dataKey="sales" stroke="#0A84FF" strokeWidth={2} dot={false} name="Sales"/>
+                        <Line type="monotone" dataKey="itc"   stroke="#FF3B5C" strokeWidth={2} dot={false} name="ITC"/>
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </>
+                )}
+
+                {/* Monthly filing status grid */}
+                <div style={{marginTop:16}}>
+                  <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:10,letterSpacing:"0.06em"}}>📅 MONTH-BY-MONTH STATUS</div>
+                  <div style={{display:"grid",gridTemplateColumns:"repeat(6,1fr)",gap:4}}>
+                    {timeline.map((m,i)=>(
+                      <div key={i} title={`${m.month}: ${m.filed?"Filed":"MISSING"} ${m.delay>0?`(${m.delay}d delay)`:""}`}
+                        style={{
+                          borderRadius:8, padding:"8px 4px",
+                          background:m.filed
+                            ?(m.delay>30?"rgba(255,214,10,0.15)":"rgba(48,209,88,0.12)")
+                            :"rgba(255,59,92,0.15)",
+                          border:`1px solid ${m.filed?(m.delay>30?"rgba(255,214,10,0.3)":"rgba(48,209,88,0.25)"):"rgba(255,59,92,0.3)"}`,
+                          textAlign:"center",cursor:"default",
+                          boxShadow:!m.filed?"0 0 6px rgba(255,59,92,0.2)":"none",
+                        }}>
+                        <div style={{fontSize:9,color:muted,marginBottom:2}}>{m.month}</div>
+                        <div style={{fontSize:14}}>
+                          {m.filed?(m.delay>30?"⚠️":"✅"):"❌"}
+                        </div>
+                        {m.delay>0&&m.filed&&(
+                          <div style={{fontSize:8,color:"#FFD60A",marginTop:1}}>{m.delay}d</div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Legend */}
+                  <div style={{display:"flex",gap:16,marginTop:10,flexWrap:"wrap"}}>
+                    {[
+                      {icon:"✅",label:"Filed on time",  color:"#30D158"},
+                      {icon:"⚠️",label:"Filed late (>30d)",color:"#FFD60A"},
+                      {icon:"❌",label:"Missing return", color:"#FF3B5C"},
+                    ].map(({icon,label,color:c})=>(
+                      <div key={label} style={{display:"flex",alignItems:"center",gap:5}}>
+                        <span style={{fontSize:12}}>{icon}</span>
+                        <span style={{fontSize:11,color:muted}}>{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Delay chart */}
+                {timeline.some(t=>t.delay>0)&&(
+                  <div style={{marginTop:16}}>
+                    <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:10,letterSpacing:"0.06em"}}>⏱️ FILING DELAY (DAYS)</div>
+                    <div style={{display:"flex",gap:3,alignItems:"flex-end",height:60}}>
+                      {timeline.map((m,i)=>{
+                        const h=m.filed?(m.delay/90)*100:100;
+                        return(
+                          <div key={i} title={`${m.month}: ${m.filed?`${m.delay}d delay`:"Not filed"}`}
+                            style={{
+                              flex:1,height:`${Math.max(h,4)}%`,
+                              background:m.filed
+                                ?(m.delay>30?"#FFD60A":m.delay>0?"#FF8C00":"#30D158")
+                                :"#FF3B5C",
+                              borderRadius:"2px 2px 0 0",
+                              transition:"height 0.5s ease",
+                              opacity:0.8,
+                            }}/>
+                        );
+                      })}
+                    </div>
+                    <div style={{display:"flex",justifyContent:"space-between",marginTop:4}}>
+                      <span style={{fontSize:9,color:muted}}>{timeline[0]?.month}</span>
+                      <span style={{fontSize:9,color:muted}}>{timeline[timeline.length-1]?.month}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
-            {/* Recommendation */}
-            <div style={{background:surfaceBg,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(0,0,0,0.07)"}`,borderRadius:14,padding:16,marginBottom:16}}>
-              <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:8,letterSpacing:"0.06em"}}>📋 RECOMMENDATION</div>
-              <div style={{fontSize:13,color:txt,lineHeight:1.7}}>{data.recommendation}</div>
-            </div>
+            {/* ── INDICATORS TAB ── */}
+            {activeTab==="indicators"&&(
+              <div>
+                <div style={{background:surfaceBg,border:`1px solid ${tabBd}`,borderRadius:14,padding:16,marginBottom:14}}>
+                  <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:12,letterSpacing:"0.06em"}}>📊 KEY FRAUD INDICATORS</div>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+                    {[
+                      {label:"ITC Ratio",        val:`${data.fraud_indicators?.avg_itc_ratio?.toFixed(3)||0}x`,      warn:data.fraud_indicators?.avg_itc_ratio>1.5},
+                      {label:"Filing Rate",       val:`${(data.fraud_indicators?.filing_rate*100||0).toFixed(1)}%`,   warn:data.fraud_indicators?.filing_rate<0.8},
+                      {label:"Missing Returns",   val:`${data.fraud_indicators?.missing_returns||0} months`,           warn:data.fraud_indicators?.missing_returns>2},
+                      {label:"Sales Spike",       val:`${data.fraud_indicators?.spike_ratio?.toFixed(2)||0}x`,        warn:data.fraud_indicators?.spike_ratio>3},
+                      {label:"Invoice Match",     val:`${(data.fraud_indicators?.invoice_match_rate*100||0).toFixed(1)}%`, warn:data.fraud_indicators?.invoice_match_rate<0.8},
+                      {label:"Sales Volatility",  val:`${data.fraud_indicators?.sales_volatility?.toFixed(3)||0}`,    warn:data.fraud_indicators?.sales_volatility>0.8},
+                    ].map(({label,val,warn})=>(
+                      <div key={label} style={{
+                        display:"flex",justifyContent:"space-between",
+                        fontSize:12,padding:"10px 12px",borderRadius:10,
+                        background:warn?"rgba(255,59,92,0.06)":surfaceBg,
+                        border:`1px solid ${warn?"rgba(255,59,92,0.2)":tabBd}`,
+                      }}>
+                        <span style={{color:muted}}>{label}</span>
+                        <span style={{color:warn?"#FF3B5C":txt,fontFamily:"'DM Mono',monospace",fontWeight:600}}>
+                          {warn&&"⚠️ "}{val}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-            {/* Action buttons */}
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+                {/* Company info */}
+                <div style={{background:surfaceBg,border:`1px solid ${tabBd}`,borderRadius:14,padding:16}}>
+                  <div style={{fontSize:11,color:muted,fontWeight:700,marginBottom:12,letterSpacing:"0.06em"}}>🏢 COMPANY DETAILS</div>
+                  {[
+                    {label:"Annual Turnover", val:`₹${(data.company_info?.annual_turnover||0).toLocaleString("en-IN")}`},
+                    {label:"Years Active",    val:`${data.company_info?.years_old||0} years`},
+                    {label:"Industry",        val:data.company_info?.industry||"N/A"},
+                    {label:"State",           val:data.company_info?.state||"N/A"},
+                  ].map(({label,val})=>(
+                    <div key={label} style={{display:"flex",justifyContent:"space-between",fontSize:12,padding:"6px 0",borderBottom:`1px solid ${tabBd}`}}>
+                      <span style={{color:muted}}>{label}</span>
+                      <span style={{color:txt,fontWeight:600}}>{val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── Action buttons ── */}
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginTop:16}}>
               <button onClick={downloadPDF} disabled={pdfLoading}
                 style={{padding:13,borderRadius:12,background:"linear-gradient(135deg,#FF3B5C,#FF6B00)",border:"none",color:"white",fontSize:13,cursor:"pointer",fontFamily:"inherit",fontWeight:600,opacity:pdfLoading?0.7:1,transition:"transform 0.2s,box-shadow 0.2s"}}
                 onMouseEnter={e=>{if(!pdfLoading){e.currentTarget.style.transform="translateY(-1px)";e.currentTarget.style.boxShadow="0 8px 24px rgba(255,59,92,0.4)";}}}
@@ -447,7 +625,10 @@ function GSTINModal({gstin,onClose,token,isDark}){
             </div>
           </>
         ):(
-          <div style={{textAlign:"center",padding:40,color:muted}}><div style={{fontSize:40,marginBottom:12}}>⚠️</div><div>Could not load report — API may be offline</div></div>
+          <div style={{textAlign:"center",padding:40,color:muted}}>
+            <div style={{fontSize:40,marginBottom:12}}>⚠️</div>
+            <div>Could not load report</div>
+          </div>
         )}
       </div>
     </div>

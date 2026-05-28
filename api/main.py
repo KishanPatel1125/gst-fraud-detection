@@ -930,3 +930,49 @@ async def delete_user(
         raise HTTPException(status_code=404, detail="User not found")
     del USERS_DB[username]
     return {"message": f"User {username} deleted"}
+@app.get("/api/gstin/{gstin_id}/timeline", tags=["GSTIN"])
+async def get_gstin_timeline(
+    gstin_id: str,
+    db: Session = Depends(get_db),
+):
+    import random
+    from datetime import datetime, timedelta
+    gstin_id = gstin_id.upper().strip()
+
+    months = []
+    for i in range(18):
+        date  = datetime.now() - timedelta(days=30*(17-i))
+        filed = random.random() > 0.15
+        months.append({
+            "month":  date.strftime("%b %y"),
+            "period": date.strftime("%Y-%m"),
+            "filed":  filed,
+            "sales":  random.randint(100000, 5000000) if filed else 0,
+            "itc":    random.randint(50000,  2000000) if filed else 0,
+            "tax":    random.randint(10000,   500000) if filed else 0,
+            "delay":  random.randint(0, 45)           if filed else 0,
+        })
+    return {"gstin": gstin_id, "timeline": months}
+
+
+@app.get("/api/audit-log", tags=["Admin"])
+async def get_audit_log(
+    limit: int = 50,
+    db: Session = Depends(get_db),
+):
+    logs = db.query(AuditLog).order_by(
+        AuditLog.created_at.desc()
+    ).limit(limit).all()
+    return {
+        "logs": [
+            {
+                "id":         l.id,
+                "action":     l.action,
+                "gstin":      l.gstin,
+                "details":    l.details,
+                "user":       getattr(l, "user", "system"),
+                "created_at": str(l.created_at),
+            }
+            for l in logs
+        ]
+    }
