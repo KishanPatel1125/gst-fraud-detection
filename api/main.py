@@ -3,6 +3,8 @@ GST Fraud Detection System
 FastAPI Backend — Phase 4 (Updated with PostgreSQL)
 All data now reads from Supabase PostgreSQL database
 """
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from bulk_processor import process_bulk_upload, generate_bulk_report, SAMPLE_CSV_TEMPLATE
 from fastapi import Form
 from fastapi.responses import StreamingResponse
