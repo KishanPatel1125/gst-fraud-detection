@@ -2,11 +2,12 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell,
   CartesianGrid, Legend, RadialBarChart, RadialBar,
-  LineChart, Line
+  LineChart, Line, AreaChart, Area
 } from "recharts";
 import BulkUpload from "./BulkUpload";
 import IndiaHeatmap from "./IndiaHeatmap";
 import UserManagement from "./UserManagement";
+import Analytics from "./Analytics";
 
 const API = "http://localhost:8000";
 
@@ -634,6 +635,149 @@ function GSTINModal({gstin,onClose,token,isDark}){
     </div>
   );
 }
+function ReanalyzeButton({ token, isDark }) {
+  const [status,   setStatus]   = useState(null);
+  const [running,  setRunning]  = useState(false);
+  const [showPanel,setShowPanel]= useState(false);
+
+  const txt   = isDark ? "#F5F5F7" : "#111";
+  const muted = isDark ? "#8E8E93" : "#666";
+  const cardBg= isDark ? "#1C1C1E" : "#fff";
+  const cardBd= isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)";
+
+  const authHeaders = token
+    ? { Authorization:`Bearer ${token}`, "Content-Type":"application/json" }
+    : {};
+
+  // ── Poll status while running ──
+  useEffect(() => {
+    if (!running) return;
+    const interval = setInterval(async () => {
+      try {
+        const res  = await fetch(`${API}/api/reanalyze/status`);
+        const data = await res.json();
+        setStatus(data);
+        if (!data.running) {
+          setRunning(false);
+          clearInterval(interval);
+        }
+      } catch {}
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [running]);
+
+  const handleReanalyze = async () => {
+    try {
+      const res = await fetch(`${API}/api/reanalyze`, {
+        method: "POST", headers: authHeaders,
+      });
+      if (res.ok) {
+        setRunning(true);
+        setShowPanel(true);
+        setStatus({ running:true, progress:0, message:"Starting..." });
+      } else {
+        const data = await res.json();
+        alert(data.detail || "Failed to start");
+      }
+    } catch {
+      alert("Cannot connect to API");
+    }
+  };
+
+  return (
+    <div style={{ position:"relative" }}>
+      <button
+        onClick={() => running ? setShowPanel(!showPanel) : handleReanalyze()}
+        disabled={running}
+        style={{
+          padding:"6px 14px", borderRadius:10,
+          background: running
+            ? "rgba(255,59,92,0.1)"
+            : "rgba(255,255,255,0.06)",
+          border:`1px solid ${running?"rgba(255,59,92,0.3)":"rgba(255,255,255,0.1)"}`,
+          color: running ? "#FF3B5C" : muted,
+          fontSize:12, cursor: running ? "default" : "pointer",
+          fontFamily:"inherit", fontWeight:500,
+          display:"flex", alignItems:"center", gap:6,
+          transition:"all 0.2s",
+          whiteSpace:"nowrap",
+        }}
+        onMouseEnter={e=>{if(!running)e.currentTarget.style.background="rgba(255,255,255,0.1)";}}
+        onMouseLeave={e=>{if(!running)e.currentTarget.style.background="rgba(255,255,255,0.06)";}}
+      >
+        <span style={{
+          display:"inline-block",
+          animation: running ? "spin 1s linear infinite" : "none"
+        }}>🔄</span>
+        {running ? `${status?.progress||0}%` : "Re-analyze"}
+      </button>
+
+      {/* Status panel */}
+      {showPanel && status && (
+        <div style={{
+          position:"absolute", top:"calc(100% + 8px)", right:0,
+          width:300, background:cardBg,
+          border:`1px solid ${cardBd}`, borderRadius:16,
+          padding:20, zIndex:200,
+          boxShadow:"0 16px 48px rgba(0,0,0,0.3)",
+          animation:"slideUp 0.2s ease",
+        }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+            <div style={{ fontSize:13, fontWeight:700, color:txt }}>🔄 Re-analysis</div>
+            <button onClick={()=>setShowPanel(false)} style={{ background:"none", border:"none", color:muted, cursor:"pointer", fontSize:16 }}>✕</button>
+          </div>
+
+          {/* Progress bar */}
+          <div style={{ height:6, background:isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.08)", borderRadius:3, overflow:"hidden", marginBottom:10 }}>
+            <div style={{
+              height:"100%",
+              width:`${status.progress||0}%`,
+              background:"linear-gradient(90deg,#FF3B5C,#FF6B00)",
+              borderRadius:3,
+              transition:"width 0.5s ease",
+              boxShadow:"0 0 8px rgba(255,59,92,0.5)",
+            }}/>
+          </div>
+
+          <div style={{ fontSize:12, color: status.completed ? "#30D158" : muted, marginBottom:12 }}>
+            {status.message}
+          </div>
+
+          {/* Steps */}
+          <div style={{ display:"flex", flexDirection:"column", gap:4 }}>
+            {[
+              {label:"Load models",     done:status.progress>=25},
+              {label:"XGBoost scoring", done:status.progress>=40},
+              {label:"Anomaly detect",  done:status.progress>=55},
+              {label:"Graph analysis",  done:status.progress>=70},
+              {label:"Rule scoring",    done:status.progress>=85},
+              {label:"Update database", done:status.progress>=100},
+            ].map(({label,done})=>(
+              <div key={label} style={{ display:"flex", alignItems:"center", gap:8 }}>
+                <div style={{
+                  width:16, height:16, borderRadius:"50%", flexShrink:0,
+                  background: done ? "#30D158" : isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.08)",
+                  display:"flex", alignItems:"center", justifyContent:"center",
+                  fontSize:10, transition:"background 0.3s",
+                }}>
+                  {done ? "✓" : ""}
+                </div>
+                <span style={{ fontSize:11, color: done ? txt : muted }}>{label}</span>
+              </div>
+            ))}
+          </div>
+
+          {status.completed && (
+            <button onClick={()=>{setShowPanel(false);window.location.reload();}}
+              style={{ width:"100%", marginTop:14, padding:"10px", borderRadius:10, background:"linear-gradient(135deg,#30D158,#1A8A35)", border:"none", color:"white", fontSize:12, cursor:"pointer", fontFamily:"inherit", fontWeight:600 }}>
+              ✅ Refresh Dashboard
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    MAIN APP
@@ -738,7 +882,7 @@ export default function App(){
     </div>
   );
 
-  const navTabs=[["dashboard","📊","Dashboard"],["alerts","🚨","Alerts"],["search","🔍","Search"],["bulk","📤","Bulk"],["heatmap","🗺️","Heatmap"],["users","👥","Users"]];
+  const navTabs=[["dashboard","📊","Dashboard"],["alerts","🚨","Alerts"],["search","🔍","Search"],["bulk","📤","Bulk"],["heatmap","🗺️","Heatmap"],["users","👥","Users"],["analytics","📊","Analytics"]];
 
   return(
     <div style={{minHeight:"100vh",background:bg,color:txt,fontFamily:"'Sora',sans-serif",transition:"background 0.4s,color 0.4s"}}>
@@ -842,6 +986,10 @@ export default function App(){
               <div style={{fontSize:10,color:muted,textTransform:"capitalize"}}>{user.role}</div>
             </div>
           </div>
+          {/* Re-analyze button — admin only */}
+          {user?.role === "admin" && (
+            <ReanalyzeButton token={token} isDark={isDark}/>
+          )}
           <button onClick={handleLogout} className="logout-btn" style={{padding:"5px 10px",borderRadius:8,border:"1px solid rgba(255,59,92,0.3)",background:"rgba(255,59,92,0.08)",color:"#FF3B5C",fontSize:11,cursor:"pointer",fontFamily:"inherit",whiteSpace:"nowrap",transition:"all 0.2s"}}>Logout</button>
         </div>
       </header>
@@ -1156,6 +1304,11 @@ export default function App(){
         {activeTab==="users"&&(
           <div className="tab-content">
             <UserManagement token={token} currentUser={user} isDark={isDark}/>
+          </div>
+        )}
+        {activeTab==="analytics"&&(
+          <div className="tab-content">
+            <Analytics token={token} isDark={isDark}/>
           </div>
         )}
         
