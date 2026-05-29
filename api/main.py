@@ -29,8 +29,7 @@ warnings.filterwarnings("ignore")
 
 # Add database path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, "database"))
-sys.path.insert(0, os.path.join(BASE_DIR, "api"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from db_config import get_db, engine
 from models import (
