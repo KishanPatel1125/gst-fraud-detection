@@ -1,23 +1,35 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Environment variables
+.env
+*.env
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
 
-# testing
-/coverage
+# ML model files (large)
+*.pkl
+src/models/saved/*.pkl
+src/models/saved/*.pt
 
-# production
-/build
+# Keep these JSON files
+!src/models/saved/model_metrics.json
+!src/models/saved/ensemble_metrics.json
+!src/models/saved/anomaly_metrics.json
+!src/models/saved/lstm_metrics.json
 
-# misc
+# Large data files
+data/synthetic/invoices.csv
+data/synthetic/gstr3b_filings.csv
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# VS Code
+.vscode/
+
+# OS
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+Thumbs.db
