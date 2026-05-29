@@ -21,9 +21,12 @@ if DATABASE_URL.startswith("postgres://"):
 # Create engine
 engine = create_engine(
     DATABASE_URL,
-    poolclass    = NullPool,   # Supabase handles pooling
-    echo         = False,      # Set True to see SQL queries
-    connect_args = {"sslmode": "require"},
+    poolclass    = NullPool,
+    echo         = False,
+    connect_args = {
+        "sslmode": "require",
+        "connect_timeout": 10,
+    },
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
