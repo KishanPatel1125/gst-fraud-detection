@@ -4,7 +4,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const API = "http://localhost:8000";
+const API = "https://gst-fraud-detection-production.up.railway.app";
 
 // ── Indian states with GST codes and approximate SVG positions ──
 const INDIA_STATES = [
@@ -80,6 +80,7 @@ export default function IndiaHeatmap({ token, isDark = true }) {
   const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
 
   // ── Load state-wise fraud data ──
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetch(`${API}/api/dashboard/stats`, { headers: authHeaders })
       .then(r => r.json())

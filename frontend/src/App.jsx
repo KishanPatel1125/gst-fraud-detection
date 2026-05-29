@@ -9,7 +9,7 @@ import IndiaHeatmap from "./IndiaHeatmap";
 import UserManagement from "./UserManagement";
 import Analytics from "./Analytics";
 
-const API = "http://localhost:8000";
+const API = "https://gst-fraud-detection-production.up.railway.app";
 
 const MOCK = {
   stats: {

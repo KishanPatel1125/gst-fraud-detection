@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react";
 
-const API = "http://localhost:8000";
+const API = "https://gst-fraud-detection-production.up.railway.app";
 
 const roleIcon  = r => ({ admin:"👑", officer:"🏛️", ca:"📊" }[r] || "👤");
 const roleColor = r => ({ admin:"#FF3B5C", officer:"#FF8C00", ca:"#30D158" }[r] || "#8E8E93");
@@ -64,7 +64,7 @@ export default function UserManagement({ token, currentUser, isDark = true }) {
       if (res.ok) setAuditLogs(data.logs || []);
     } catch {}
   };
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (currentUser?.role !== "admin") return;
     loadUsers();

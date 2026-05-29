@@ -9,7 +9,7 @@ import {
   PieChart, Pie, Cell, AreaChart, Area,
 } from "recharts";
 
-const API = "http://localhost:8000";
+const API = "https://gst-fraud-detection-production.up.railway.app";
 
 const CHART_COLORS = [
   "#FF3B5C","#FF8C00","#BF5AF2","#0A84FF",
@@ -51,7 +51,7 @@ export default function Analytics({ token, isDark = true }) {
   const gridC  = isDark ? "rgba(255,255,255,0.05)"  : "rgba(0,0,0,0.06)";
 
   const authHeaders = token ? { Authorization:`Bearer ${token}` } : {};
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setLoading(true);
     Promise.all([

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API = "http://localhost:8000"; // Change if your API server is hosted elsewhere
+const API = "https://gst-fraud-detection-production.up.railway.app"; // Change if your API server is hosted elsewhere
 
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState("");

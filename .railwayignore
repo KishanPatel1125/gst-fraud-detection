@@ -1,0 +1,12 @@
+venv/
+frontend/node_modules/
+frontend/build/
+frontend/src/
+data/synthetic/invoices.csv
+data/synthetic/gstr3b_filings.csv
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.pt
+src/models/saved/lstm_model.pt
